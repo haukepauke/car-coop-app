@@ -1,0 +1,84 @@
+name: car_coop_app
+description: Car cooperative management app
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # HTTP
+  dio: ^5.4.3
+
+  # Serialization
+  json_annotation: ^4.9.0
+
+  # Navigation
+  go_router: ^14.2.7
+
+  # Calendar
+  table_calendar: ^3.1.2
+
+  # Maps
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  # Storage
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.3.2
+
+  # Images
+  image_picker: ^1.1.2
+  cached_network_image: ^3.4.1
+
+  # Utils
+  intl: ^0.20.2
+  flutter_html: ^3.0.0
+  geolocator: ^14.0.2
+  url_launcher: ^6.3.2
+  google_mlkit_text_recognition: ^0.15.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # Code generation
+  build_runner: ^2.4.11
+  riverpod_generator: ^2.4.3
+  json_serializable: ^6.8.0
+  flutter_native_splash: ^2.4.7
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/images/logo_round.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#121212"
+  image: assets/images/logo_round.png
+  image_dark: assets/images/logo_round.png
+  android_12:
+    color: "#ffffff"
+    color_dark: "#121212"
+    image: assets/images/logo_round.png
+    image_dark: assets/images/logo_round.png
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
