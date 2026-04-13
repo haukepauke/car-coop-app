@@ -46,15 +46,13 @@
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>This app needs access to your photo library to attach photos to messages.</string>
 		<key>NSCameraUsageDescription</key>
 		<string>This app needs access to your camera to take photos for messages.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app needs your location to show the car's parking position on the map.</string>
-		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 		<string>This app needs your location to show the car's parking position on the map.</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
