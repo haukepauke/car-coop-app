@@ -16,15 +16,24 @@ class AuthNotifier extends AsyncNotifier<User?> {
     final storage = ref.watch(secureStorageProvider);
     final token = await storage.read(key: AppConstants.jwtTokenKey);
     if (token == null) return null;
-    ref.read(jwtTokenProvider.notifier).state = token;
+
+    // Only update the token provider if it differs to avoid unnecessary invalidations
+    if (ref.read(jwtTokenProvider) != token) {
+      ref.read(jwtTokenProvider.notifier).state = token;
+    }
+
     try {
       final user = await ref.watch(userApiProvider).getMe();
       _applyUserLocale(user);
       return user;
     } catch (_) {
-      // Token is invalid or expired — clear it so the login form works cleanly.
-      await storage.delete(key: AppConstants.jwtTokenKey);
-      ref.read(jwtTokenProvider.notifier).state = null;
+      // Re-check storage to ensure we don't clear a token that was just updated by a login() call
+      final currentToken = await storage.read(key: AppConstants.jwtTokenKey);
+      if (currentToken == token) {
+        // Token is genuinely invalid or expired — clear it.
+        await storage.delete(key: AppConstants.jwtTokenKey);
+        ref.read(jwtTokenProvider.notifier).state = null;
+      }
       return null;
     }
   }
@@ -35,8 +44,12 @@ class AuthNotifier extends AsyncNotifier<User?> {
       final token = await ref.read(authApiProvider).login(email, password);
       final storage = ref.read(secureStorageProvider);
       await storage.write(key: AppConstants.jwtTokenKey, value: token);
+      
+      // Update the token state; this will invalidate userApiProvider automatically
       ref.read(jwtTokenProvider.notifier).state = token;
-      final user = await ref.read(userApiProvider).getMe();
+
+      // Use refresh to force the creation of a new API client instance with the new token
+      final user = await ref.refresh(userApiProvider).getMe();
       _applyUserLocale(user);
       return user;
     });
