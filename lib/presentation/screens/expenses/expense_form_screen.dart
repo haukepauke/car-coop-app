@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/extensions/string_extensions.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../data/api/expense_api.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/expense_provider.dart';
@@ -84,7 +85,7 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.errorOccurred), backgroundColor: Colors.red),
+          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
         );
       }
     } finally {
