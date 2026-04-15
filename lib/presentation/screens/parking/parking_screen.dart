@@ -34,7 +34,7 @@ class _ParkingTileCacheManager extends CacheManager {
 class _CachedTileProvider extends TileProvider {
   _CachedTileProvider()
       : super(
-          headers: const {
+          headers: {
             'User-Agent': 'com.carcoop.app',
           },
         );
