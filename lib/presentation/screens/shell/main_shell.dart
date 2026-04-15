@@ -63,11 +63,11 @@ class MainShell extends ConsumerWidget {
               color: quickActionsEnabled ? null : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             tooltip: l10n.quickActionsTitle,
-            onPressed: () => context.push('/quick-actions'),
+            onPressed: () => context.go('/quick-actions'),
           ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
-            onPressed: () => context.push('/settings'),
+            onPressed: () => context.go('/settings'),
           ),
         ],
       ),

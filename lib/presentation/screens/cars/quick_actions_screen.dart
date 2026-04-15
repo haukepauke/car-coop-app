@@ -186,7 +186,7 @@ class _QuickActionsScreenState extends ConsumerState<QuickActionsScreen> {
               label: l10n.findVehicle,
               icon: Icons.map_outlined,
               accent: accent,
-              onPressed: () => context.push('/parking'),
+              onPressed: () => context.go('/parking'),
             ),
             _QuickActionCard(
               label: l10n.startTrip,
@@ -198,19 +198,19 @@ class _QuickActionsScreenState extends ConsumerState<QuickActionsScreen> {
               label: l10n.addExpense,
               icon: Icons.receipt_long_outlined,
               accent: accent,
-              onPressed: () => context.push('/expenses/new'),
+              onPressed: () => context.go('/expenses/new'),
             ),
             _QuickActionCard(
               label: l10n.parkCar,
               icon: Icons.local_parking_outlined,
               accent: accent,
-              onPressed: () => context.push('/parking'),
+              onPressed: () => context.go('/parking'),
             ),
             _QuickActionCard(
               label: l10n.finishTrip,
               icon: Icons.check_circle_outline,
               accent: accent,
-              onPressed: () => context.push('/trips/new'),
+              onPressed: () => context.go('/trips/new'),
             ),
           ],
         ),
@@ -254,7 +254,7 @@ class _QuickActionsScreenState extends ConsumerState<QuickActionsScreen> {
                     type: AppMessageType.info,
                   );
                   if (!mounted) return;
-                  _navigateAfterDialog(() => context.push('/trips/new'));
+                  _navigateAfterDialog(() => context.go('/trips/new'));
                 },
                 child: Text(l10n.no),
               ),
