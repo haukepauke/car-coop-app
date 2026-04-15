@@ -66,8 +66,7 @@ GoRouter appRouter(AppRouterRef ref) {
       final isLoggedIn = authState.value != null;
       if (!isLoggedIn) return (loc == '/login' || loc == '/setup') ? null : '/login';
       if (loc == '/setup' || loc == '/login') {
-        if (!hasSelectedCar) return '/cars';
-        return quickActionsEnabled ? '/quick-actions' : '/trips';
+        return '/cars';
       }
       if (!hasSelectedCar && loc != '/cars' && loc != '/settings') {
         return '/cars';

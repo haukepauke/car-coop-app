@@ -15,19 +15,37 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navBookings => 'Buchungen';
 
   @override
+  String get navBookingsShort => 'Buchen';
+
+  @override
   String get navTrips => 'Fahrten';
+
+  @override
+  String get navTripsShort => 'Fahrten';
 
   @override
   String get navExpenses => 'Ausgaben';
 
   @override
+  String get navExpensesShort => 'Ausgaben';
+
+  @override
   String get navPayments => 'Zahlungen';
+
+  @override
+  String get navPaymentsShort => 'Zahlen';
 
   @override
   String get navMessages => 'Beiträge';
 
   @override
+  String get navMessagesShort => 'Beiträge';
+
+  @override
   String get navParking => 'Parken';
+
+  @override
+  String get navParkingShort => 'Parken';
 
   @override
   String get signIn => 'Anmelden';
@@ -404,7 +422,8 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get tempTripNotice => 'Temporäre Fahrt erstellen (später besprechen)';
+  String get tempTripNotice =>
+      'Oh, oh! Jemand hat offenbar vergessen, die letzte Fahrt einzutragen. Wir erstellen jetzt eine temporäre Fahrt, damit Kilometerstand und Fahrtenbuch wieder zusammenpassen. Die Gruppe muss herausfinden, warum diese Abweichung entstanden ist.';
 
   @override
   String get haveNiceTrip => 'Gute Fahrt!';

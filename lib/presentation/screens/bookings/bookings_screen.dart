@@ -11,6 +11,7 @@ import '../../../providers/car_provider.dart';
 import '../../widgets/common/async_value_widget.dart';
 import '../../widgets/common/confirm_dialog.dart';
 import '../../widgets/common/page_header.dart';
+import '../../widgets/common/friendly_empty_state.dart';
 import '../../../data/api/booking_api.dart';
 
 class BookingsScreen extends ConsumerStatefulWidget {
@@ -165,10 +166,16 @@ class _ListTab extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     if (bookings.isEmpty) {
-      return Center(child: Text(l10n.noBookings));
+      return FriendlyEmptyState(
+        icon: Icons.calendar_month_outlined,
+        title: l10n.noBookings,
+        actionLabel: l10n.newBooking,
+        onAction: () => context.push('/bookings/new'),
+      );
     }
     final fmt = DateFormat('MMM d, HH:mm');
     return ListView.builder(
+      padding: const EdgeInsets.only(bottom: 96),
       itemCount: bookings.length,
       itemBuilder: (context, index) {
         final b = bookings[index];

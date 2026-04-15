@@ -15,19 +15,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navBookings => 'Bookings';
 
   @override
+  String get navBookingsShort => 'Bookings';
+
+  @override
   String get navTrips => 'Trips';
+
+  @override
+  String get navTripsShort => 'Trips';
 
   @override
   String get navExpenses => 'Expenses';
 
   @override
+  String get navExpensesShort => 'Expenses';
+
+  @override
   String get navPayments => 'Payments';
+
+  @override
+  String get navPaymentsShort => 'Payments';
 
   @override
   String get navMessages => 'Messages';
 
   @override
+  String get navMessagesShort => 'Messages';
+
+  @override
   String get navParking => 'Parking';
+
+  @override
+  String get navParkingShort => 'Parking';
 
   @override
   String get signIn => 'Sign In';
@@ -404,7 +422,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get tempTripNotice => 'Create temporary trip (to discuss later)';
+  String get tempTripNotice =>
+      'Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.';
 
   @override
   String get haveNiceTrip => 'Have a nice trip!';

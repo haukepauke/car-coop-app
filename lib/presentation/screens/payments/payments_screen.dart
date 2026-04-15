@@ -10,6 +10,7 @@ import '../../../providers/car_provider.dart';
 import '../../../providers/payment_provider.dart';
 import '../../widgets/common/async_value_widget.dart';
 import '../../widgets/common/confirm_dialog.dart';
+import '../../widgets/common/friendly_empty_state.dart';
 import '../../widgets/common/page_header.dart';
 
 class PaymentsScreen extends ConsumerWidget {
@@ -44,8 +45,16 @@ class PaymentsScreen extends ConsumerWidget {
               value: paymentsAsync,
               data: (collection) {
                 final payments = collection.members;
-                if (payments.isEmpty) return Center(child: Text(l10n.noPayments));
+                if (payments.isEmpty) {
+                  return FriendlyEmptyState(
+                    icon: Icons.payments_outlined,
+                    title: l10n.noPayments,
+                    actionLabel: l10n.newPayment,
+                    onAction: () => context.push('/payments/new'),
+                  );
+                }
                 return ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 96),
                   itemCount: payments.length,
                   itemBuilder: (context, index) {
                     final p = payments[index];

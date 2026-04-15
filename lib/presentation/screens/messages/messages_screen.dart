@@ -14,6 +14,7 @@ import '../../../providers/message_provider.dart';
 import '../../../providers/settings_provider.dart';
 import '../../widgets/common/page_header.dart';
 import '../../widgets/common/user_avatar.dart';
+import '../../widgets/common/friendly_empty_state.dart';
 
 class MessagesScreen extends ConsumerStatefulWidget {
   const MessagesScreen({super.key});
@@ -125,12 +126,20 @@ class _MessagesScreenState extends ConsumerState<MessagesScreen> {
         ),
       );
     }
-    if (_messages.isEmpty) return Center(child: Text(l10n.noMessages));
+    if (_messages.isEmpty) {
+      return FriendlyEmptyState(
+        icon: Icons.forum_outlined,
+        title: l10n.noMessages,
+        actionLabel: l10n.newMessage,
+        onAction: () => context.push('/messages/new'),
+      );
+    }
 
     final sorted = _sorted;
     return RefreshIndicator(
       onRefresh: _refresh,
       child: ListView.builder(
+        padding: const EdgeInsets.only(bottom: 96),
         itemCount: sorted.length + (_hasMore ? 1 : 0),
         itemBuilder: (context, index) {
           if (index == sorted.length) {

@@ -45,12 +45,12 @@ class MainShell extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     final tabLabels = [
-      l10n.navTrips,
-      l10n.navExpenses,
-      l10n.navParking,
-      l10n.navMessages,
-      l10n.navPayments,
-      l10n.navBookings,
+      l10n.navTripsShort,
+      l10n.navExpensesShort,
+      l10n.navParkingShort,
+      l10n.navMessagesShort,
+      l10n.navPaymentsShort,
+      l10n.navBookingsShort,
     ];
 
     return Scaffold(

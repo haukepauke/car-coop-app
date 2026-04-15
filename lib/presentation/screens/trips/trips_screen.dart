@@ -10,6 +10,7 @@ import '../../../providers/car_provider.dart';
 import '../../../providers/trip_provider.dart';
 import '../../widgets/common/async_value_widget.dart';
 import '../../widgets/common/confirm_dialog.dart';
+import '../../widgets/common/friendly_empty_state.dart';
 import '../../widgets/common/page_header.dart';
 
 class TripsScreen extends ConsumerWidget {
@@ -37,8 +38,16 @@ class TripsScreen extends ConsumerWidget {
               value: tripsAsync,
               data: (collection) {
                 final trips = collection.members;
-                if (trips.isEmpty) return Center(child: Text(l10n.noTrips));
+                if (trips.isEmpty) {
+                  return FriendlyEmptyState(
+                    icon: Icons.route_outlined,
+                    title: l10n.noTrips,
+                    actionLabel: l10n.newTrip,
+                    onAction: () => context.push('/trips/new'),
+                  );
+                }
                 return ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 96),
                   itemCount: trips.length,
                   itemBuilder: (context, index) {
                     final t = trips[index];

@@ -118,11 +118,23 @@ abstract class AppLocalizations {
   /// **'Bookings'**
   String get navBookings;
 
+  /// No description provided for @navBookingsShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get navBookingsShort;
+
   /// No description provided for @navTrips.
   ///
   /// In en, this message translates to:
   /// **'Trips'**
   String get navTrips;
+
+  /// No description provided for @navTripsShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips'**
+  String get navTripsShort;
 
   /// No description provided for @navExpenses.
   ///
@@ -130,11 +142,23 @@ abstract class AppLocalizations {
   /// **'Expenses'**
   String get navExpenses;
 
+  /// No description provided for @navExpensesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get navExpensesShort;
+
   /// No description provided for @navPayments.
   ///
   /// In en, this message translates to:
   /// **'Payments'**
   String get navPayments;
+
+  /// No description provided for @navPaymentsShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get navPaymentsShort;
 
   /// No description provided for @navMessages.
   ///
@@ -142,11 +166,23 @@ abstract class AppLocalizations {
   /// **'Messages'**
   String get navMessages;
 
+  /// No description provided for @navMessagesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get navMessagesShort;
+
   /// No description provided for @navParking.
   ///
   /// In en, this message translates to:
   /// **'Parking'**
   String get navParking;
+
+  /// No description provided for @navParkingShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get navParkingShort;
 
   /// No description provided for @signIn.
   ///
@@ -883,7 +919,7 @@ abstract class AppLocalizations {
   /// No description provided for @tempTripNotice.
   ///
   /// In en, this message translates to:
-  /// **'Create temporary trip (to discuss later)'**
+  /// **'Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.'**
   String get tempTripNotice;
 
   /// No description provided for @haveNiceTrip.

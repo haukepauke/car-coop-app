@@ -15,19 +15,37 @@ class AppLocalizationsFr extends AppLocalizations {
   String get navBookings => 'Agenda';
 
   @override
+  String get navBookingsShort => 'Agenda';
+
+  @override
   String get navTrips => 'Trajets';
+
+  @override
+  String get navTripsShort => 'Trajets';
 
   @override
   String get navExpenses => 'Dépenses';
 
   @override
+  String get navExpensesShort => 'Dépenses';
+
+  @override
   String get navPayments => 'Paiements';
+
+  @override
+  String get navPaymentsShort => 'Payer';
 
   @override
   String get navMessages => 'Messages';
 
   @override
+  String get navMessagesShort => 'Messages';
+
+  @override
   String get navParking => 'Parking';
+
+  @override
+  String get navParkingShort => 'Parking';
 
   @override
   String get signIn => 'Se connecter';
@@ -407,7 +425,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tempTripNotice =>
-      'Créer un trajet temporaire (à discuter plus tard)';
+      'Oh là là ! Quelqu\'un semble avoir oublié d\'ajouter le dernier trajet. Nous allons maintenant créer un trajet temporaire afin que le compteur kilométrique et notre carnet de bord correspondent. Le groupe doit découvrir pourquoi cet écart existe.';
 
   @override
   String get haveNiceTrip => 'Bon trajet !';

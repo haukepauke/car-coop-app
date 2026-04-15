@@ -9,6 +9,7 @@ import '../../../providers/car_provider.dart';
 import '../../../providers/expense_provider.dart';
 import '../../widgets/common/async_value_widget.dart';
 import '../../widgets/common/confirm_dialog.dart';
+import '../../widgets/common/friendly_empty_state.dart';
 import '../../widgets/common/page_header.dart';
 
 class ExpensesScreen extends ConsumerWidget {
@@ -35,8 +36,16 @@ class ExpensesScreen extends ConsumerWidget {
               value: expensesAsync,
               data: (collection) {
                 final expenses = collection.members;
-                if (expenses.isEmpty) return Center(child: Text(l10n.noExpenses));
+                if (expenses.isEmpty) {
+                  return FriendlyEmptyState(
+                    icon: Icons.receipt_long_outlined,
+                    title: l10n.noExpenses,
+                    actionLabel: l10n.newExpense,
+                    onAction: () => context.push('/expenses/new'),
+                  );
+                }
                 return ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 96),
                   itemCount: expenses.length,
                   itemBuilder: (context, index) {
                     final e = expenses[index];

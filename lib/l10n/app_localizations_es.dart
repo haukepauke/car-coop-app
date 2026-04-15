@@ -15,19 +15,37 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navBookings => 'Reservas';
 
   @override
+  String get navBookingsShort => 'Reservas';
+
+  @override
   String get navTrips => 'Viajes';
+
+  @override
+  String get navTripsShort => 'Viajes';
 
   @override
   String get navExpenses => 'Gastos';
 
   @override
+  String get navExpensesShort => 'Gastos';
+
+  @override
   String get navPayments => 'Pagos';
+
+  @override
+  String get navPaymentsShort => 'Pagos';
 
   @override
   String get navMessages => 'Mensajes';
 
   @override
+  String get navMessagesShort => 'Mensajes';
+
+  @override
   String get navParking => 'Parking';
+
+  @override
+  String get navParkingShort => 'Parking';
 
   @override
   String get signIn => 'Iniciar sesión';
@@ -406,7 +424,8 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get tempTripNotice => 'Crear viaje temporal (para debatir más tarde)';
+  String get tempTripNotice =>
+      '¡Vaya! Parece que alguien olvidó añadir el último viaje. Ahora vamos a crear un viaje temporal para que el cuentakilómetros y nuestro registro vuelvan a coincidir. El grupo debe averiguar por qué existe esta diferencia.';
 
   @override
   String get haveNiceTrip => '¡Buen viaje!';

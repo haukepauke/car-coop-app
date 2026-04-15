@@ -4,11 +4,17 @@
   "@appTitle": { "description": "App title" },
 
   "navBookings": "Bookings",
+  "navBookingsShort": "Bookings",
   "navTrips": "Trips",
+  "navTripsShort": "Trips",
   "navExpenses": "Expenses",
+  "navExpensesShort": "Expenses",
   "navPayments": "Payments",
+  "navPaymentsShort": "Payments",
   "navMessages": "Messages",
+  "navMessagesShort": "Messages",
   "navParking": "Parking",
+  "navParkingShort": "Parking",
 
   "signIn": "Sign In",
   "signOut": "Sign out",
@@ -154,7 +160,7 @@
       "mileage": { "type": "int" }
     }
   },
-  "tempTripNotice": "Create temporary trip (to discuss later)",
+  "tempTripNotice": "Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.",
   "haveNiceTrip": "Have a nice trip!",
   "yes": "Yes",
   "no": "No",

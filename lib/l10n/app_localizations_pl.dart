@@ -15,19 +15,37 @@ class AppLocalizationsPl extends AppLocalizations {
   String get navBookings => 'Rezerwacje';
 
   @override
+  String get navBookingsShort => 'Rezerw.';
+
+  @override
   String get navTrips => 'Przejazdy';
+
+  @override
+  String get navTripsShort => 'Przejazdy';
 
   @override
   String get navExpenses => 'Wydatki';
 
   @override
+  String get navExpensesShort => 'Wydatki';
+
+  @override
   String get navPayments => 'Płatności';
+
+  @override
+  String get navPaymentsShort => 'Płatności';
 
   @override
   String get navMessages => 'Wiadom.';
 
   @override
+  String get navMessagesShort => 'Wiadom.';
+
+  @override
   String get navParking => 'Parking';
+
+  @override
+  String get navParkingShort => 'Parking';
 
   @override
   String get signIn => 'Zaloguj się';
@@ -405,7 +423,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get tempTripNotice =>
-      'Utwórz tymczasowy przejazd (do omówienia później)';
+      'Oj, oj! Wygląda na to, że ktoś zapomniał dodać ostatni przejazd. Utworzymy teraz tymczasowy przejazd, aby licznik i nasz dziennik znów się zgadzały. Grupa musi ustalić, skąd wzięła się ta rozbieżność.';
 
   @override
   String get haveNiceTrip => 'Miłej podróży!';

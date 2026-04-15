@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/extensions/exception_extensions.dart';
+import 'friendly_empty_state.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
@@ -23,21 +24,9 @@ class AsyncValueWidget<T> extends StatelessWidget {
       loading: () => loading ?? const Center(child: CircularProgressIndicator()),
       error: (e, st) => error != null
           ? error!(e, st)
-          : Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                    const SizedBox(height: 12),
-                    Text(
-                      e.toLocalizedMessage(context),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+          : FriendlyEmptyState(
+              icon: Icons.cloud_off_outlined,
+              title: e.toLocalizedMessage(context),
             ),
     );
   }

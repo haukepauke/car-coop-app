@@ -15,19 +15,37 @@ class AppLocalizationsNl extends AppLocalizations {
   String get navBookings => 'Agenda';
 
   @override
+  String get navBookingsShort => 'Agenda';
+
+  @override
   String get navTrips => 'Ritten';
+
+  @override
+  String get navTripsShort => 'Ritten';
 
   @override
   String get navExpenses => 'Uitgaven';
 
   @override
+  String get navExpensesShort => 'Uitgaven';
+
+  @override
   String get navPayments => 'Betalingen';
+
+  @override
+  String get navPaymentsShort => 'Betalen';
 
   @override
   String get navMessages => 'Berichten';
 
   @override
+  String get navMessagesShort => 'Bericht';
+
+  @override
   String get navParking => 'Parkeren';
+
+  @override
+  String get navParkingShort => 'Parkeren';
 
   @override
   String get signIn => 'Inloggen';
@@ -402,7 +420,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get tempTripNotice => 'Tijdelijke rit maken (later bespreken)';
+  String get tempTripNotice =>
+      'O jee! Het lijkt erop dat iemand vergeten is de laatste rit toe te voegen. We maken nu een tijdelijke rit aan zodat kilometerstand en logboek weer overeenkomen. De groep moet uitzoeken waarom dit verschil bestaat.';
 
   @override
   String get haveNiceTrip => 'Goede rit!';
