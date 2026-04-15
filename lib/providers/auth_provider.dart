@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/constants/app_constants.dart';
@@ -41,10 +40,8 @@ class AuthNotifier extends AsyncNotifier<User?> {
       if (errorStr.contains('401') || errorStr.contains('jwt') || errorStr.contains('token')) {
         // Only delete from storage if we actually have a token that was rejected
         final storage = ref.read(secureStorageProvider);
-        if (token != null) {
-          await storage.delete(key: AppConstants.jwtTokenKey);
-          ref.read(jwtTokenProvider.notifier).state = null;
-        }
+        await storage.delete(key: AppConstants.jwtTokenKey);
+        ref.read(jwtTokenProvider.notifier).state = null;
         return null;
       }
       

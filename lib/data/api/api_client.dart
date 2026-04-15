@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -107,7 +108,7 @@ Dio dio(DioRef ref) {
       // to push the user to /login on the next navigation cycle.
       ref.read(jwtTokenProvider.notifier).state = null;
     }),
-    LogInterceptor(responseBody: false),
+    if (kDebugMode) LogInterceptor(responseBody: false),
   ]);
 
   return client;
