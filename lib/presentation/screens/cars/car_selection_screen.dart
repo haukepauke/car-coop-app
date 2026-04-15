@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../data/models/car.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../providers/settings_provider.dart';
 import '../../widgets/common/user_avatar.dart';
 
@@ -28,7 +29,7 @@ class CarSelectionScreen extends ConsumerWidget {
             children: [
               const Icon(Icons.error_outline, size: 48),
               const SizedBox(height: 16),
-              Text(error.toString()),
+              Text(error.toLocalizedMessage(context)),
               const SizedBox(height: 16),
               FilledButton(
                 onPressed: () => ref.invalidate(carsProvider),

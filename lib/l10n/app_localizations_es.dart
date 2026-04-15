@@ -419,4 +419,84 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get enterValidNumber => 'Introduce un número válido';
+
+  @override
+  String get board_system_trip_added =>
+      '<strong>%user%</strong> added a new trip with <strong>%car%</strong>.';
+
+  @override
+  String get board_system_booking_added =>
+      '<strong>%user%</strong> added a new booking for <strong>%car%</strong> (<em>%start%</em> – <em>%end%</em>).';
+
+  @override
+  String get board_system_booking_updated =>
+      '<strong>%user%</strong> updated a booking for <strong>%car%</strong>.';
+
+  @override
+  String get board_system_booking_deleted =>
+      '<strong>%user%</strong> deleted a booking for <strong>%car%</strong>: <em>%title%</em> (%start% – %end%).';
+
+  @override
+  String get board_system_payment_added =>
+      '<strong>%from%</strong> sent a payment to <strong>%to%</strong> for <strong>%car%</strong>.';
+
+  @override
+  String get board_system_invitation_created =>
+      '<strong>%user%</strong> invited <em>%email%</em> to join <strong>%car%</strong>.';
+
+  @override
+  String get board_system_invitation_accepted =>
+      '<strong>%user%</strong> joined <strong>%car%</strong>.';
+
+  @override
+  String get board_system_user_removed =>
+      '<strong>%user%</strong> left or was removed from <strong>%car%</strong>.';
+
+  @override
+  String get board_system_price_per_unit_changed =>
+      'The price per unit for group <strong>%group%</strong> in <strong>%car%</strong> has been changed from %old_price% € to <strong>%new_price% €</strong>.';
+
+  @override
+  String get board_system_milestone_100k =>
+      '<strong>%car%</strong> just hit <strong>100,000 %unit%</strong>! The odometer has broken into six figures — a historic moment!';
+
+  @override
+  String get board_system_milestone_200k =>
+      '<strong>%car%</strong> rolls past <strong>200,000 %unit%</strong>! roughly five laps around the Earth\'s equator.';
+
+  @override
+  String get board_system_milestone_300k =>
+      '<strong>%car%</strong> reaches <strong>300,000 %unit%</strong>! You could have driven to the Moon and most of the way back.';
+
+  @override
+  String get board_system_milestone_400k =>
+      '<strong>%car%</strong> blazes past <strong>400,000 %unit%</strong>! That\'s the distance to the Moon — achieved on four wheels!';
+
+  @override
+  String get board_system_milestone_500k =>
+      'HALF A MILLION! <strong>%car%</strong> cruises past <strong>500,000 %unit%</strong>!';
+
+  @override
+  String get board_system_milestone_600k =>
+      '<strong>%car%</strong> powers through <strong>600,000 %unit%</strong>! That\'s fifteen laps of the Earth\'s equator.';
+
+  @override
+  String get board_system_milestone_700k =>
+      '<strong>%car%</strong> rockets past <strong>700,000 %unit%</strong>! You\'ve nearly covered the route from Earth to Venus.';
+
+  @override
+  String get board_system_milestone_800k =>
+      '<strong>%car%</strong> screams past <strong>800,000 %unit%</strong>! Only 200,000 to go to the magical million!';
+
+  @override
+  String get board_system_milestone_900k =>
+      '<strong>%car%</strong> thunders through <strong>900,000 %unit%</strong>! The penultimate milestone!';
+
+  @override
+  String get board_system_milestone_1000k =>
+      'ONE MILLION! <strong>%car%</strong> conquers the ultimate milestone: <strong>1,000,000 %unit%</strong>!';
+
+  @override
+  String get board_system_milestone_repeating =>
+      '<strong>%car%</strong> just rolled past <strong>%milestone% %unit%</strong> — what a beautifully poetic number!';
 }

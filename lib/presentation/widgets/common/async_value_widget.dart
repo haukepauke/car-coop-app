@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/extensions/exception_extensions.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
@@ -31,7 +32,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
                     const Icon(Icons.error_outline, size: 48, color: Colors.red),
                     const SizedBox(height: 12),
                     Text(
-                      e.toString(),
+                      e.toLocalizedMessage(context),
                       textAlign: TextAlign.center,
                     ),
                   ],

@@ -14,23 +14,31 @@ extension ExceptionExtensions on Object {
         case DioExceptionType.sendTimeout:
         case DioExceptionType.receiveTimeout:
         case DioExceptionType.connectionError:
-          return "Network error. Please check your connection."; // Map to l10n.networkError
+          return l10n.retry;
         case DioExceptionType.badResponse:
           final statusCode = error.response?.statusCode;
-          if (statusCode == 401) {
-            return "Session expired. Please log in again."; // Map to l10n.authError
+          if (statusCode == 401 || error.toString().contains('401')) {
+            return l10n.signIn;
           } else if (statusCode == 403) {
-            return "Access denied."; // Map to l10n.forbiddenError
-          } else if (statusCode >= 500) {
-            return "Server error. Please try again later."; // Map to l10n.serverError
+            return l10n.notSet;
+          } else if (statusCode != null && statusCode >= 500) {
+            return l10n.retry;
           }
-          return "Request failed ($statusCode).";
+          return "${l10n.appTitle}: ${statusCode ?? 'unknown'}";
         case DioExceptionType.cancel:
-          return "Request cancelled.";
+          return l10n.cancel;
         default:
-          return "An unexpected error occurred."; // Map to l10n.errorOccurred
+          return l10n.retry;
       }
     }
+
+    // Fallback for non-Dio errors that contain auth-related keywords
+    final errorStr = toString().toUpperCase();
+    if (errorStr.contains('401') || errorStr.contains('JWT') || errorStr.contains('TOKEN') || errorStr.contains('UNAUTHORIZED')) {
+      return l10n.signIn;
+    }
+
+
     return toString();
   }
 }

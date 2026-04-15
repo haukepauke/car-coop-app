@@ -915,6 +915,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid number'**
   String get enterValidNumber;
+
+  /// No description provided for @board_system_trip_added.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> added a new trip with <strong>%car%</strong>.'**
+  String get board_system_trip_added;
+
+  /// No description provided for @board_system_booking_added.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> added a new booking for <strong>%car%</strong> (<em>%start%</em> – <em>%end%</em>).'**
+  String get board_system_booking_added;
+
+  /// No description provided for @board_system_booking_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> updated a booking for <strong>%car%</strong>.'**
+  String get board_system_booking_updated;
+
+  /// No description provided for @board_system_booking_deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> deleted a booking for <strong>%car%</strong>: <em>%title%</em> (%start% – %end%).'**
+  String get board_system_booking_deleted;
+
+  /// No description provided for @board_system_payment_added.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%from%</strong> sent a payment to <strong>%to%</strong> for <strong>%car%</strong>.'**
+  String get board_system_payment_added;
+
+  /// No description provided for @board_system_invitation_created.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> invited <em>%email%</em> to join <strong>%car%</strong>.'**
+  String get board_system_invitation_created;
+
+  /// No description provided for @board_system_invitation_accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> joined <strong>%car%</strong>.'**
+  String get board_system_invitation_accepted;
+
+  /// No description provided for @board_system_user_removed.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%user%</strong> left or was removed from <strong>%car%</strong>.'**
+  String get board_system_user_removed;
+
+  /// No description provided for @board_system_price_per_unit_changed.
+  ///
+  /// In en, this message translates to:
+  /// **'The price per unit for group <strong>%group%</strong> in <strong>%car%</strong> has been changed from %old_price% € to <strong>%new_price% €</strong>.'**
+  String get board_system_price_per_unit_changed;
+
+  /// No description provided for @board_system_milestone_100k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> just hit <strong>100,000 %unit%</strong>! The odometer has broken into six figures — a historic moment!'**
+  String get board_system_milestone_100k;
+
+  /// No description provided for @board_system_milestone_200k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> rolls past <strong>200,000 %unit%</strong>! roughly five laps around the Earth\'s equator.'**
+  String get board_system_milestone_200k;
+
+  /// No description provided for @board_system_milestone_300k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> reaches <strong>300,000 %unit%</strong>! You could have driven to the Moon and most of the way back.'**
+  String get board_system_milestone_300k;
+
+  /// No description provided for @board_system_milestone_400k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> blazes past <strong>400,000 %unit%</strong>! That\'s the distance to the Moon — achieved on four wheels!'**
+  String get board_system_milestone_400k;
+
+  /// No description provided for @board_system_milestone_500k.
+  ///
+  /// In en, this message translates to:
+  /// **'HALF A MILLION! <strong>%car%</strong> cruises past <strong>500,000 %unit%</strong>!'**
+  String get board_system_milestone_500k;
+
+  /// No description provided for @board_system_milestone_600k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> powers through <strong>600,000 %unit%</strong>! That\'s fifteen laps of the Earth\'s equator.'**
+  String get board_system_milestone_600k;
+
+  /// No description provided for @board_system_milestone_700k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> rockets past <strong>700,000 %unit%</strong>! You\'ve nearly covered the route from Earth to Venus.'**
+  String get board_system_milestone_700k;
+
+  /// No description provided for @board_system_milestone_800k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> screams past <strong>800,000 %unit%</strong>! Only 200,000 to go to the magical million!'**
+  String get board_system_milestone_800k;
+
+  /// No description provided for @board_system_milestone_900k.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> thunders through <strong>900,000 %unit%</strong>! The penultimate milestone!'**
+  String get board_system_milestone_900k;
+
+  /// No description provided for @board_system_milestone_1000k.
+  ///
+  /// In en, this message translates to:
+  /// **'ONE MILLION! <strong>%car%</strong> conquers the ultimate milestone: <strong>1,000,000 %unit%</strong>!'**
+  String get board_system_milestone_1000k;
+
+  /// No description provided for @board_system_milestone_repeating.
+  ///
+  /// In en, this message translates to:
+  /// **'<strong>%car%</strong> just rolled past <strong>%milestone% %unit%</strong> — what a beautifully poetic number!'**
+  String get board_system_milestone_repeating;
 }
 
 class _AppLocalizationsDelegate

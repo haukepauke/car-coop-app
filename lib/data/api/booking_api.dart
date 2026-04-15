@@ -21,7 +21,11 @@ class BookingApi {
   }) async {
     final response = await _dio.get<dynamic>(
       '/api/bookings',
-      queryParameters: {'car': carIri, 'page': page},
+      queryParameters: {
+        'car': carIri,
+        'page': page,
+        'order[startDate]': 'desc',
+      },
     );
     return ApiCollection.fromJson(response.data!, Booking.fromJson);
   }

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../providers/locale_provider.dart';
 import '../../../providers/settings_provider.dart';
@@ -47,7 +48,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (next.hasError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(next.error.toString()),
+            content: Text(next.error!.toLocalizedMessage(context)),
             backgroundColor: Colors.red,
           ),
         );

@@ -5,12 +5,15 @@ import '../core/constants/app_constants.dart';
 import '../data/api/car_api.dart';
 import '../data/models/api_collection.dart';
 import '../data/models/car.dart';
+import 'auth_provider.dart';
 import 'settings_provider.dart';
 
 part 'car_provider.g.dart';
 
 @riverpod
 Future<ApiCollection<Car>> cars(CarsRef ref) async {
+  // Ensure auth is fully settled before fetching cars to avoid race conditions
+  await ref.watch(authProvider.future);
   return ref.watch(carApiProvider).getCars();
 }
 

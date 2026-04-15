@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/extensions/string_extensions.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../data/api/message_api.dart';
 import '../../../data/models/message.dart';
 import '../../../l10n/app_localizations.dart';
@@ -74,7 +75,7 @@ class _MessagesScreenState extends ConsumerState<MessagesScreen> {
         _page = page;
       });
     } catch (e) {
-      setState(() => _error = e.toString());
+      setState(() => _error = e.toLocalizedMessage(context));
     } finally {
       setState(() { _initialLoading = false; _loadingMore = false; });
     }
@@ -193,7 +194,7 @@ class _MessageCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Html(data: m.content),
+            Html(data: m.content.toLocalizedContent(context)),
             if (m.photos.isNotEmpty) ...[
               const SizedBox(height: 8),
               SizedBox(

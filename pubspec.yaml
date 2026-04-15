@@ -1,7 +1,7 @@
 name: car_coop_app
 description: Car cooperative management app
 publish_to: "none"
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -61,8 +61,10 @@ dev_dependencies:
 
 flutter_launcher_icons:
   android: true
-  ios: false
+  ios: true
+  remove_alpha_ios: true
   image_path: "assets/images/logo_round.png"
+  image_path_ios: "assets/images/logo.png" # Provide a square, opaque version here
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/images/logo.png"
 

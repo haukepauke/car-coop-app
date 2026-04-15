@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/extensions/string_extensions.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../data/api/trip_api.dart';
 import '../../../data/models/trip.dart';
 import '../../../l10n/app_localizations.dart';
@@ -180,7 +181,7 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Scan failed: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
         );
       }
     } finally {
@@ -224,7 +225,7 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
+          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
         );
       }
     } finally {
