@@ -10,6 +10,7 @@ import '../../../data/models/booking.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/booking_provider.dart';
 import '../../../providers/car_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 class BookingFormScreen extends ConsumerStatefulWidget {
   const BookingFormScreen({super.key, this.bookingId});
@@ -76,8 +77,10 @@ class _BookingFormScreenState extends ConsumerState<BookingFormScreen> {
     final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
     if (_startTime == null || _endTime == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.bookingSelectStartEnd)),
+      await showAppMessageDialog(
+        context,
+        message: l10n.bookingSelectStartEnd,
+        type: AppMessageType.warning,
       );
       return;
     }
@@ -101,8 +104,10 @@ class _BookingFormScreenState extends ConsumerState<BookingFormScreen> {
       if (mounted) context.pop();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     } finally {

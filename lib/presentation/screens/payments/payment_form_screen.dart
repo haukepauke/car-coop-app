@@ -4,11 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/extensions/string_extensions.dart';
+import '../../../core/extensions/exception_extensions.dart';
 import '../../../data/api/payment_api.dart';
 import '../../../data/models/payment.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/payment_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 class PaymentFormScreen extends ConsumerStatefulWidget {
   const PaymentFormScreen({super.key, this.paymentId});
@@ -82,8 +84,10 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
       if (mounted) context.pop();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     } finally {

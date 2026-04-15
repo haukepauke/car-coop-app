@@ -18,6 +18,7 @@
   "emailRequired": "Email is required",
   "password": "Password",
   "passwordRequired": "Password is required",
+  "invalidCredentials": "Incorrect email or password.",
 
   "setupSubtitle": "Enter the URL of your Car Coop server to get started.",
   "setupUrlRequired": "Please enter a URL",
@@ -33,6 +34,7 @@
   "settingsServerUrl": "Server URL",
   "settingsSave": "Save",
   "settingsServerUrlUpdated": "Server URL updated",
+  "settingsQuickActions": "Show quick actions by default",
   "settingsSwitchCar": "Switch car",
 
   "selectCar": "Select a Car",
@@ -139,6 +141,24 @@
   "locationPermissionRequired": "Location permission is required to set parking location",
   "couldNotOpenNav": "Could not open navigation app",
 
+  "quickActionsTitle": "Quick Actions",
+  "findVehicle": "Find vehicle",
+  "startTrip": "Start trip",
+  "addExpense": "Add expense",
+  "parkCar": "Park car",
+  "finishTrip": "Finish trip",
+  "mileageCheck": "Is the odometer at {mileage}?",
+  "@mileageCheck": {
+    "description": "Prompt shown before starting a trip to confirm the current mileage",
+    "placeholders": {
+      "mileage": { "type": "int" }
+    }
+  },
+  "tempTripNotice": "Create temporary trip (to discuss later)",
+  "haveNiceTrip": "Have a nice trip!",
+  "yes": "Yes",
+  "no": "No",
+
   "date": "Date",
   "user": "User",
   "selectUser": "Select a user",
@@ -149,6 +169,7 @@
   "noCarSelected": "No car selected",
   "retry": "Retry",
   "cancel": "Cancel",
+  "ok": "OK",
   "delete": "Delete",
   "confirm": "Confirm",
   "pleaseSelectStartTime": "Please select a start time",

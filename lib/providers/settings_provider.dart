@@ -50,3 +50,17 @@ Future<void> saveThemeMode(WidgetRef ref, ThemeMode mode) async {
   await prefs.setString(AppConstants.themeModeKey, mode.name);
   ref.read(themeModeProvider.notifier).state = mode;
 }
+
+// ---------------------------------------------------------------------------
+// Quick actions
+// ---------------------------------------------------------------------------
+final quickActionsEnabledProvider = StateProvider<bool>((ref) {
+  final prefs = ref.watch(sharedPreferencesProvider);
+  return prefs.getBool(AppConstants.quickActionsEnabledKey) ?? true;
+});
+
+Future<void> saveQuickActionsEnabled(WidgetRef ref, bool enabled) async {
+  final prefs = ref.read(sharedPreferencesProvider);
+  await prefs.setBool(AppConstants.quickActionsEnabledKey, enabled);
+  ref.read(quickActionsEnabledProvider.notifier).state = enabled;
+}

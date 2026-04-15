@@ -17,6 +17,7 @@ class CarSelectionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final carsAsync = ref.watch(carsProvider);
+    final quickActionsEnabled = ref.watch(quickActionsEnabledProvider);
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -75,7 +76,9 @@ class CarSelectionScreen extends ConsumerWidget {
           if (cars.length == 1) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await selectCar(ref, cars.first.id);
-              if (context.mounted) context.go('/bookings');
+              if (context.mounted) {
+                context.go(quickActionsEnabled ? '/quick-actions' : '/trips');
+              }
             });
             return const Center(child: CircularProgressIndicator());
           }
@@ -110,6 +113,7 @@ class _CarTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final apiUrl = ref.watch(apiUrlProvider) ?? '';
+    final quickActionsEnabled = ref.watch(quickActionsEnabledProvider);
     final picturePath = car.profilePicturePath;
 
     final leading = picturePath != null && picturePath.isNotEmpty
@@ -154,7 +158,9 @@ class _CarTile extends ConsumerWidget {
       trailing: const Icon(Icons.chevron_right),
       onTap: () async {
         await selectCar(ref, car.id);
-        if (context.mounted) context.go('/bookings');
+        if (context.mounted) {
+          context.go(quickActionsEnabled ? '/quick-actions' : '/trips');
+        }
       },
     );
   }

@@ -8,6 +8,7 @@ import '../../../core/extensions/exception_extensions.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../providers/locale_provider.dart';
 import '../../../providers/settings_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -46,11 +47,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     ref.listen(authProvider, (_, next) {
       if (next.hasError) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(next.error!.toLocalizedMessage(context)),
-            backgroundColor: Colors.red,
-          ),
+        showAppMessageDialog(
+          context,
+          message: next.error!.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     });

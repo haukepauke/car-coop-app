@@ -15,6 +15,7 @@
   "emailRequired": "E-Mail ist erforderlich",
   "password": "Passwort",
   "passwordRequired": "Passwort ist erforderlich",
+  "invalidCredentials": "E-Mail oder Passwort ist nicht korrekt.",
   "setupSubtitle": "Geben Sie die URL Ihres Car Coop Servers ein, um zu beginnen.",
   "setupUrlRequired": "Bitte eine URL eingeben",
   "setupUrlInvalid": "URL muss mit http oder https beginnen",
@@ -28,6 +29,7 @@
   "settingsServerUrl": "Server-URL",
   "settingsSave": "Speichern",
   "settingsServerUrlUpdated": "Server-URL aktualisiert",
+  "settingsQuickActions": "Schnellaktionen standardmäßig anzeigen",
   "settingsSwitchCar": "Auto wechseln",
   "selectCar": "Auto auswählen",
   "noCarMember": "Du bist noch kein Mitglied einer Fahrgemeinschaft.",
@@ -120,6 +122,23 @@
   "navigateToVehicle": "Zum Fahrzeug navigieren",
   "locationPermissionRequired": "Standortberechtigung erforderlich",
   "couldNotOpenNav": "Navigations-App konnte nicht geöffnet werden",
+  "quickActionsTitle": "Schnellaktionen",
+  "findVehicle": "Fahrzeug finden",
+  "startTrip": "Fahrt starten",
+  "addExpense": "Ausgabe hinzufügen",
+  "parkCar": "Auto parken",
+  "finishTrip": "Fahrt beenden",
+  "mileageCheck": "Ist der Kilometerstand bei {mileage}?",
+  "@mileageCheck": {
+    "description": "Hinweis vor dem Start einer Fahrt zur Bestätigung des aktuellen Kilometerstands",
+    "placeholders": {
+      "mileage": { "type": "int" }
+    }
+  },
+  "tempTripNotice": "Temporäre Fahrt erstellen (später besprechen)",
+  "haveNiceTrip": "Gute Fahrt!",
+  "yes": "Ja",
+  "no": "Nein",
   "date": "Datum",
   "user": "Benutzer",
   "selectUser": "Benutzer auswählen",
@@ -130,6 +149,7 @@
   "noCarSelected": "Kein Auto ausgewählt",
   "retry": "Wiederholen",
   "cancel": "Abbrechen",
+  "ok": "OK",
   "delete": "Löschen",
   "confirm": "Bestätigen",
   "pleaseSelectStartTime": "Bitte Startzeit auswählen",
@@ -154,12 +174,5 @@
   "board_system_milestone_800k": "<strong>%car%</strong> rast an <strong>800.000 %unit%</strong> vorbei! Nur noch 200.000 bis zur magischen Million!",
   "board_system_milestone_900k": "<strong>%car%</strong> donnert durch die <strong>900.000 %unit%</strong>! Der vorletzte Meilenstein!",
   "board_system_milestone_1000k": "EINE MILLION! <strong>%car%</strong> erobert den ultimativen Meilenstein: <strong>1.000.000 %unit%</strong>!",
-  "board_system_milestone_repeating": "<strong>%car%</strong> ist gerade an <strong>%milestone% %unit%</strong> vorbeigerollt — was für eine schöne Zahl!",
-  "board_system_booking_updated": "<strong>%user%</strong> hat eine Buchung für <strong>%car%</strong> aktualisiert.",
-  "board_system_booking_deleted": "<strong>%user%</strong> hat eine Buchung für <strong>%car%</strong> gelöscht: <em>%title%</em> (%start% – %end%).",
-  "board_system_payment_added": "<strong>%from%</strong> hat eine Zahlung an <strong>%to%</strong> für <strong>%car%</strong> gesendet.",
-  "board_system_invitation_created": "<strong>%user%</strong> hat <em>%email%</em> eingeladen, <strong>%car%</strong> beizutreten.",
-  "board_system_invitation_accepted": "<strong>%user%</strong> ist <strong>%car%</strong> beigetreten.",
-  "board_system_user_removed": "<strong>%user%</strong> hat <strong>%car%</strong> verlassen oder wurde entfernt.",
-  "board_system_price_per_unit_changed": "Der Preis pro Einheit für die Gruppe <strong>%group%</strong> in <strong>%car%</strong> wurde von %old_price% € auf <strong>%new_price% €</strong> geändert."
+  "board_system_milestone_repeating": "<strong>%car%</strong> ist gerade an <strong>%milestone% %unit%</strong> vorbeigerollt — was für eine schöne Zahl!"
 }

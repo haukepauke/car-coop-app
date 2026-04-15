@@ -196,6 +196,12 @@ abstract class AppLocalizations {
   /// **'Password is required'**
   String get passwordRequired;
 
+  /// No description provided for @invalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect email or password.'**
+  String get invalidCredentials;
+
   /// No description provided for @setupSubtitle.
   ///
   /// In en, this message translates to:
@@ -273,6 +279,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Server URL updated'**
   String get settingsServerUrlUpdated;
+
+  /// No description provided for @settingsQuickActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Show quick actions by default'**
+  String get settingsQuickActions;
 
   /// No description provided for @settingsSwitchCar.
   ///
@@ -826,6 +838,72 @@ abstract class AppLocalizations {
   /// **'Could not open navigation app'**
   String get couldNotOpenNav;
 
+  /// No description provided for @quickActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActionsTitle;
+
+  /// No description provided for @findVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find vehicle'**
+  String get findVehicle;
+
+  /// No description provided for @startTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Start trip'**
+  String get startTrip;
+
+  /// No description provided for @addExpense.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get addExpense;
+
+  /// No description provided for @parkCar.
+  ///
+  /// In en, this message translates to:
+  /// **'Park car'**
+  String get parkCar;
+
+  /// No description provided for @finishTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish trip'**
+  String get finishTrip;
+
+  /// Prompt shown before starting a trip to confirm the current mileage
+  ///
+  /// In en, this message translates to:
+  /// **'Is the odometer at {mileage}?'**
+  String mileageCheck(int mileage);
+
+  /// No description provided for @tempTripNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Create temporary trip (to discuss later)'**
+  String get tempTripNotice;
+
+  /// No description provided for @haveNiceTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a nice trip!'**
+  String get haveNiceTrip;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
   /// No description provided for @date.
   ///
   /// In en, this message translates to:
@@ -885,6 +963,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
 
   /// No description provided for @delete.
   ///

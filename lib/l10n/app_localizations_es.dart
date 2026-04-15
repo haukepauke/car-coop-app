@@ -54,6 +54,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get passwordRequired => 'La contraseña es obligatoria';
 
   @override
+  String get invalidCredentials =>
+      'Correo electrónico o contraseña incorrectos.';
+
+  @override
   String get setupSubtitle =>
       'Introduzca la URL de su servidor Car Coop para comenzar.';
 
@@ -92,6 +96,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsServerUrlUpdated => 'URL del servidor actualizada';
+
+  @override
+  String get settingsQuickActions => 'Mostrar acciones rápidas por defecto';
 
   @override
   String get settingsSwitchCar => 'Cambiar coche';
@@ -376,6 +383,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String get couldNotOpenNav => 'No se pudo abrir la aplicación de navegación';
 
   @override
+  String get quickActionsTitle => 'Acciones rápidas';
+
+  @override
+  String get findVehicle => 'Encontrar vehículo';
+
+  @override
+  String get startTrip => 'Iniciar viaje';
+
+  @override
+  String get addExpense => 'Añadir gasto';
+
+  @override
+  String get parkCar => 'Aparcar coche';
+
+  @override
+  String get finishTrip => 'Finalizar viaje';
+
+  @override
+  String mileageCheck(int mileage) {
+    return '¿Está el cuentakilómetros en $mileage?';
+  }
+
+  @override
+  String get tempTripNotice => 'Crear viaje temporal (para debatir más tarde)';
+
+  @override
+  String get haveNiceTrip => '¡Buen viaje!';
+
+  @override
+  String get yes => 'Sí';
+
+  @override
+  String get no => 'No';
+
+  @override
   String get date => 'Fecha';
 
   @override
@@ -406,6 +448,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cancel => 'Cancelar';
 
   @override
+  String get ok => 'OK';
+
+  @override
   String get delete => 'Eliminar';
 
   @override
@@ -422,81 +467,81 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get board_system_trip_added =>
-      '<strong>%user%</strong> added a new trip with <strong>%car%</strong>.';
+      '<strong>%user%</strong> ha añadido un nuevo viaje con <strong>%car%</strong>.';
 
   @override
   String get board_system_booking_added =>
-      '<strong>%user%</strong> added a new booking for <strong>%car%</strong> (<em>%start%</em> – <em>%end%</em>).';
+      '<strong>%user%</strong> ha añadido una nueva reserva para <strong>%car%</strong> (<em>%start%</em> – <em>%end%</em>).';
 
   @override
   String get board_system_booking_updated =>
-      '<strong>%user%</strong> updated a booking for <strong>%car%</strong>.';
+      '<strong>%user%</strong> ha actualizado una reserva para <strong>%car%</strong>.';
 
   @override
   String get board_system_booking_deleted =>
-      '<strong>%user%</strong> deleted a booking for <strong>%car%</strong>: <em>%title%</em> (%start% – %end%).';
+      '<strong>%user%</strong> ha eliminado una reserva para <strong>%car%</strong>: <em>%title%</em> (%start% – %end%).';
 
   @override
   String get board_system_payment_added =>
-      '<strong>%from%</strong> sent a payment to <strong>%to%</strong> for <strong>%car%</strong>.';
+      '<strong>%from%</strong> ha enviado un pago a <strong>%to%</strong> para <strong>%car%</strong>.';
 
   @override
   String get board_system_invitation_created =>
-      '<strong>%user%</strong> invited <em>%email%</em> to join <strong>%car%</strong>.';
+      '<strong>%user%</strong> ha invitado a <em>%email%</em> a unirse a <strong>%car%</strong>.';
 
   @override
   String get board_system_invitation_accepted =>
-      '<strong>%user%</strong> joined <strong>%car%</strong>.';
+      '<strong>%user%</strong> se ha unido a <strong>%car%</strong>.';
 
   @override
   String get board_system_user_removed =>
-      '<strong>%user%</strong> left or was removed from <strong>%car%</strong>.';
+      '<strong>%user%</strong> dejó <strong>%car%</strong> o fue eliminado.';
 
   @override
   String get board_system_price_per_unit_changed =>
-      'The price per unit for group <strong>%group%</strong> in <strong>%car%</strong> has been changed from %old_price% € to <strong>%new_price% €</strong>.';
+      'El precio por unidad del grupo <strong>%group%</strong> en <strong>%car%</strong> ha cambiado de %old_price% € a <strong>%new_price% €</strong>.';
 
   @override
   String get board_system_milestone_100k =>
-      '<strong>%car%</strong> just hit <strong>100,000 %unit%</strong>! The odometer has broken into six figures — a historic moment!';
+      '<strong>%car%</strong> acaba de alcanzar <strong>100.000 %unit%</strong>. El cuentakilómetros ya tiene seis cifras: ¡un momento histórico!';
 
   @override
   String get board_system_milestone_200k =>
-      '<strong>%car%</strong> rolls past <strong>200,000 %unit%</strong>! roughly five laps around the Earth\'s equator.';
+      '<strong>%car%</strong> supera <strong>200.000 %unit%</strong>. Eso equivale aproximadamente a cinco vueltas al ecuador de la Tierra.';
 
   @override
   String get board_system_milestone_300k =>
-      '<strong>%car%</strong> reaches <strong>300,000 %unit%</strong>! You could have driven to the Moon and most of the way back.';
+      '<strong>%car%</strong> alcanza <strong>300.000 %unit%</strong>. ¡Podrías haber conducido hasta la Luna y gran parte del camino de vuelta!';
 
   @override
   String get board_system_milestone_400k =>
-      '<strong>%car%</strong> blazes past <strong>400,000 %unit%</strong>! That\'s the distance to the Moon — achieved on four wheels!';
+      '<strong>%car%</strong> pasa de <strong>400.000 %unit%</strong>. ¡Esa es la distancia hasta la Luna, lograda sobre cuatro ruedas!';
 
   @override
   String get board_system_milestone_500k =>
-      'HALF A MILLION! <strong>%car%</strong> cruises past <strong>500,000 %unit%</strong>!';
+      '¡MEDIO MILLÓN! <strong>%car%</strong> supera <strong>500.000 %unit%</strong>.';
 
   @override
   String get board_system_milestone_600k =>
-      '<strong>%car%</strong> powers through <strong>600,000 %unit%</strong>! That\'s fifteen laps of the Earth\'s equator.';
+      '<strong>%car%</strong> supera <strong>600.000 %unit%</strong>. Eso son quince vueltas al ecuador de la Tierra.';
 
   @override
   String get board_system_milestone_700k =>
-      '<strong>%car%</strong> rockets past <strong>700,000 %unit%</strong>! You\'ve nearly covered the route from Earth to Venus.';
+      '<strong>%car%</strong> rebasa <strong>700.000 %unit%</strong>. ¡Ya casi has cubierto la ruta de la Tierra a Venus!';
 
   @override
   String get board_system_milestone_800k =>
-      '<strong>%car%</strong> screams past <strong>800,000 %unit%</strong>! Only 200,000 to go to the magical million!';
+      '<strong>%car%</strong> supera <strong>800.000 %unit%</strong>. ¡Solo faltan 200.000 para llegar al millón mágico!';
 
   @override
   String get board_system_milestone_900k =>
-      '<strong>%car%</strong> thunders through <strong>900,000 %unit%</strong>! The penultimate milestone!';
+      '<strong>%car%</strong> atraviesa <strong>900.000 %unit%</strong>. ¡El penúltimo gran hito!';
 
   @override
   String get board_system_milestone_1000k =>
-      'ONE MILLION! <strong>%car%</strong> conquers the ultimate milestone: <strong>1,000,000 %unit%</strong>!';
+      '¡UN MILLÓN! <strong>%car%</strong> conquista el hito definitivo: <strong>1.000.000 %unit%</strong>.';
 
   @override
   String get board_system_milestone_repeating =>
-      '<strong>%car%</strong> just rolled past <strong>%milestone% %unit%</strong> — what a beautifully poetic number!';
+      '<strong>%car%</strong> acaba de pasar por <strong>%milestone% %unit%</strong>: ¡qué número tan bonito!';
 }

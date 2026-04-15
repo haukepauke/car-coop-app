@@ -54,6 +54,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get passwordRequired => 'Passwort ist erforderlich';
 
   @override
+  String get invalidCredentials => 'E-Mail oder Passwort ist nicht korrekt.';
+
+  @override
   String get setupSubtitle =>
       'Geben Sie die URL Ihres Car Coop Servers ein, um zu beginnen.';
 
@@ -92,6 +95,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsServerUrlUpdated => 'Server-URL aktualisiert';
+
+  @override
+  String get settingsQuickActions => 'Schnellaktionen standardmäßig anzeigen';
 
   @override
   String get settingsSwitchCar => 'Auto wechseln';
@@ -375,6 +381,41 @@ class AppLocalizationsDe extends AppLocalizations {
   String get couldNotOpenNav => 'Navigations-App konnte nicht geöffnet werden';
 
   @override
+  String get quickActionsTitle => 'Schnellaktionen';
+
+  @override
+  String get findVehicle => 'Fahrzeug finden';
+
+  @override
+  String get startTrip => 'Fahrt starten';
+
+  @override
+  String get addExpense => 'Ausgabe hinzufügen';
+
+  @override
+  String get parkCar => 'Auto parken';
+
+  @override
+  String get finishTrip => 'Fahrt beenden';
+
+  @override
+  String mileageCheck(int mileage) {
+    return 'Ist der Kilometerstand bei $mileage?';
+  }
+
+  @override
+  String get tempTripNotice => 'Temporäre Fahrt erstellen (später besprechen)';
+
+  @override
+  String get haveNiceTrip => 'Gute Fahrt!';
+
+  @override
+  String get yes => 'Ja';
+
+  @override
+  String get no => 'Nein';
+
+  @override
   String get date => 'Datum';
 
   @override
@@ -403,6 +444,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get cancel => 'Abbrechen';
+
+  @override
+  String get ok => 'OK';
 
   @override
   String get delete => 'Löschen';

@@ -11,6 +11,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/parking_provider.dart';
 import '../../widgets/common/async_value_widget.dart';
+import '../../widgets/common/app_message_dialog.dart';
 import '../../widgets/common/page_header.dart';
 
 class ParkingScreen extends ConsumerStatefulWidget {
@@ -29,8 +30,10 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
     final uri = Uri.parse('geo:$lat,$lng?q=$lat,$lng');
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.couldNotOpenNav)),
+        await showAppMessageDialog(
+          context,
+          message: l10n.couldNotOpenNav,
+          type: AppMessageType.error,
         );
       }
     }
@@ -46,8 +49,10 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.locationPermissionRequired)),
+        await showAppMessageDialog(
+          context,
+          message: l10n.locationPermissionRequired,
+          type: AppMessageType.warning,
         );
       }
       return;
@@ -73,14 +78,18 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
       _mapController.move(LatLng(position.latitude, position.longitude), 15);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.parkingSaved)),
+        await showAppMessageDialog(
+          context,
+          message: l10n.parkingSaved,
+          type: AppMessageType.success,
         );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toString(),
+          type: AppMessageType.error,
         );
       }
     } finally {

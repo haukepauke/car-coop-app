@@ -9,6 +9,7 @@ import '../../../data/api/expense_api.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/expense_provider.dart';
 import '../../../providers/car_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 const _types = ['fuel', 'charging', 'service', 'other'];
 
@@ -84,8 +85,10 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
       if (mounted) context.pop();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     } finally {

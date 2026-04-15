@@ -54,6 +54,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordRequired => 'Password is required';
 
   @override
+  String get invalidCredentials => 'Incorrect email or password.';
+
+  @override
   String get setupSubtitle =>
       'Enter the URL of your Car Coop server to get started.';
 
@@ -92,6 +95,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsServerUrlUpdated => 'Server URL updated';
+
+  @override
+  String get settingsQuickActions => 'Show quick actions by default';
 
   @override
   String get settingsSwitchCar => 'Switch car';
@@ -375,6 +381,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get couldNotOpenNav => 'Could not open navigation app';
 
   @override
+  String get quickActionsTitle => 'Quick Actions';
+
+  @override
+  String get findVehicle => 'Find vehicle';
+
+  @override
+  String get startTrip => 'Start trip';
+
+  @override
+  String get addExpense => 'Add expense';
+
+  @override
+  String get parkCar => 'Park car';
+
+  @override
+  String get finishTrip => 'Finish trip';
+
+  @override
+  String mileageCheck(int mileage) {
+    return 'Is the odometer at $mileage?';
+  }
+
+  @override
+  String get tempTripNotice => 'Create temporary trip (to discuss later)';
+
+  @override
+  String get haveNiceTrip => 'Have a nice trip!';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
   String get date => 'Date';
 
   @override
@@ -403,6 +444,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'OK';
 
   @override
   String get delete => 'Delete';

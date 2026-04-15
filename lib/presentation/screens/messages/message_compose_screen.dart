@@ -9,6 +9,7 @@ import '../../../data/api/message_api.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/message_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 class MessageComposeScreen extends ConsumerStatefulWidget {
   const MessageComposeScreen({super.key});
@@ -26,8 +27,10 @@ class _MessageComposeScreenState extends ConsumerState<MessageComposeScreen> {
   Future<void> _pickPhoto() async {
     final l10n = AppLocalizations.of(context)!;
     if (_photos.length >= 4) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.messageMaxPhotos)),
+      await showAppMessageDialog(
+        context,
+        message: l10n.messageMaxPhotos,
+        type: AppMessageType.warning,
       );
       return;
     }
@@ -44,8 +47,10 @@ class _MessageComposeScreenState extends ConsumerState<MessageComposeScreen> {
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
     if (_contentController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.messageContentRequired)),
+      await showAppMessageDialog(
+        context,
+        message: l10n.messageContentRequired,
+        type: AppMessageType.warning,
       );
       return;
     }
@@ -61,8 +66,10 @@ class _MessageComposeScreenState extends ConsumerState<MessageComposeScreen> {
       if (mounted) context.pop();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toString(),
+          type: AppMessageType.error,
         );
       }
     } finally {

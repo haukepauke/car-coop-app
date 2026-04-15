@@ -13,6 +13,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/trip_provider.dart';
+import '../../widgets/common/app_message_dialog.dart';
 
 class TripFormScreen extends ConsumerStatefulWidget {
   const TripFormScreen({super.key, this.tripId});
@@ -168,8 +169,10 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
 
       if (numbers.isEmpty) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n.scanNoMileage)),
+          await showAppMessageDialog(
+            context,
+            message: l10n.scanNoMileage,
+            type: AppMessageType.warning,
           );
         }
         return;
@@ -180,8 +183,10 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
       setState(() => _endMileageController.text = mileage.toString());
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     } finally {
@@ -193,8 +198,10 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
     if (_startTime == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.pleaseSelectStartTime)),
+      await showAppMessageDialog(
+        context,
+        message: l10n.pleaseSelectStartTime,
+        type: AppMessageType.warning,
       );
       return;
     }
@@ -224,8 +231,10 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toLocalizedMessage(context)), backgroundColor: Colors.red),
+        await showAppMessageDialog(
+          context,
+          message: e.toLocalizedMessage(context),
+          type: AppMessageType.error,
         );
       }
     } finally {

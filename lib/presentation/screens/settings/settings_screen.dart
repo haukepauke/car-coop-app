@@ -38,6 +38,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final themeMode = ref.watch(themeModeProvider);
+    final quickActionsEnabled = ref.watch(quickActionsEnabledProvider);
     final currentUser = ref.watch(currentUserProvider);
     final localeCode = ref.watch(localCodeProvider);
     final l10n = AppLocalizations.of(context)!;
@@ -81,6 +82,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   .toList(),
               onChanged: _changeLocale,
             ),
+          ),
+          const Divider(),
+          SwitchListTile(
+            secondary: const Icon(Icons.bolt_outlined),
+            title: Text(l10n.settingsQuickActions),
+            value: quickActionsEnabled,
+            onChanged: (value) => saveQuickActionsEnabled(ref, value),
           ),
           const Divider(),
           ref.watch(carsProvider).maybeWhen(

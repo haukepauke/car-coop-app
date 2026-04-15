@@ -21,6 +21,7 @@ import '../../presentation/screens/messages/message_compose_screen.dart';
 import '../../presentation/screens/parking/parking_screen.dart';
 import '../../presentation/screens/settings/settings_screen.dart';
 import '../../presentation/screens/cars/car_selection_screen.dart';
+import '../../presentation/screens/cars/quick_actions_screen.dart';
 import '../../providers/car_provider.dart';
 import '../../providers/auth_provider.dart';
 
@@ -44,16 +45,18 @@ GoRouter appRouter(AppRouterRef ref) {
   ref.listen(authProvider, (_, __) => notifier.notify());
   ref.listen(hasSelectedCarProvider, (_, __) => notifier.notify());
   ref.listen(apiUrlProvider, (_, __) => notifier.notify());
+  ref.listen(quickActionsEnabledProvider, (_, __) => notifier.notify());
   ref.onDispose(notifier.dispose);
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/trips',
+    initialLocation: ref.read(quickActionsEnabledProvider) ? '/quick-actions' : '/trips',
     refreshListenable: notifier,
     redirect: (context, state) {
       final apiUrl = ref.read(apiUrlProvider);
       final authState = ref.read(authProvider);
       final hasSelectedCar = ref.read(hasSelectedCarProvider);
+      final quickActionsEnabled = ref.read(quickActionsEnabledProvider);
 
       final hasApiUrl = apiUrl != null && apiUrl.isNotEmpty;
       final loc = state.matchedLocation;
@@ -62,9 +65,15 @@ GoRouter appRouter(AppRouterRef ref) {
       if (authState.isLoading) return null;
       final isLoggedIn = authState.value != null;
       if (!isLoggedIn) return (loc == '/login' || loc == '/setup') ? null : '/login';
-      if (loc == '/setup' || loc == '/login') return '/cars';
+      if (loc == '/setup' || loc == '/login') {
+        if (!hasSelectedCar) return '/cars';
+        return quickActionsEnabled ? '/quick-actions' : '/trips';
+      }
       if (!hasSelectedCar && loc != '/cars' && loc != '/settings') {
         return '/cars';
+      }
+      if (!quickActionsEnabled && loc == '/quick-actions') {
+        return '/trips';
       }
       return null;
     },
@@ -84,6 +93,10 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/settings',
         builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: '/quick-actions',
+        builder: (context, state) => const QuickActionsScreen(),
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

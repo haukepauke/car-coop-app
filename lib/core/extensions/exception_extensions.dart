@@ -18,7 +18,7 @@ extension ExceptionExtensions on Object {
         case DioExceptionType.badResponse:
           final statusCode = error.response?.statusCode;
           if (statusCode == 401 || error.toString().contains('401')) {
-            return l10n.signIn;
+            return l10n.invalidCredentials;
           } else if (statusCode == 403) {
             return l10n.notSet;
           } else if (statusCode != null && statusCode >= 500) {
@@ -35,7 +35,7 @@ extension ExceptionExtensions on Object {
     // Fallback for non-Dio errors that contain auth-related keywords
     final errorStr = toString().toUpperCase();
     if (errorStr.contains('401') || errorStr.contains('JWT') || errorStr.contains('TOKEN') || errorStr.contains('UNAUTHORIZED')) {
-      return l10n.signIn;
+      return l10n.invalidCredentials;
     }
 
 
