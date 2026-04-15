@@ -107,6 +107,10 @@
   "expenseName": "Name",
   "expenseNameRequired": "Name is required",
   "expenseAmount": "Amount (€)",
+  "expenseTypeFuel": "Fuel",
+  "expenseTypeCharging": "Charging",
+  "expenseTypeService": "Workshop/Service",
+  "expenseTypeOther": "Other",
   "deleteExpense": "Delete Expense",
   "deleteExpenseConfirm": "Delete this expense?",
 
@@ -115,10 +119,15 @@
   "newPayment": "New Payment",
   "editPayment": "Edit Payment",
   "paymentType": "Payment type",
+  "paymentTypeCash": "Cash",
+  "paymentTypePaypal": "PayPal",
+  "paymentTypeBankTransfer": "Bank transfer",
+  "paymentTypeOther": "Other",
   "paymentFrom": "From",
   "paymentTo": "To",
   "paymentSelectPaidBy": "Select who paid",
   "paymentSelectRecipient": "Select the recipient",
+  "paymentSenderReceiverMustDiffer": "Sender and recipient must be different users",
   "deletePayment": "Delete Payment",
   "deletePaymentConfirm": "Delete this payment?",
 
@@ -179,8 +188,19 @@
   "delete": "Delete",
   "confirm": "Confirm",
   "pleaseSelectStartTime": "Please select a start time",
+  "pleaseSelectEndTime": "Please select an end time",
   "enterWholeNumber": "Enter a whole number",
   "enterValidNumber": "Enter a valid number",
+  "tripSelectAtLeastOneUser": "Select at least one user",
+  "tripEndMileageMustExceedStart": "End mileage must be greater than start mileage",
+  "tripEndDateMustNotBeBeforeStart": "End date must be on or after the start date",
+  "tripDatesCannotBeInFuture": "Trip dates cannot be in the future",
+  "tripStartDateMustNotBeBeforePreviousEnd": "Start date cannot be before the previous trip ended on {date}",
+  "@tripStartDateMustNotBeBeforePreviousEnd": {
+    "placeholders": {
+      "date": {}
+    }
+  },
   "board_system_trip_added": "<strong>%user%</strong> added a new trip with <strong>%car%</strong>.",
   "board_system_booking_added": "<strong>%user%</strong> added a new booking for <strong>%car%</strong> (<em>%start%</em> – <em>%end%</em>).",
   "board_system_booking_updated": "<strong>%user%</strong> updated a booking for <strong>%car%</strong>.",

@@ -306,6 +306,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get expenseAmount => 'Amount (€)';
 
   @override
+  String get expenseTypeFuel => 'Fuel';
+
+  @override
+  String get expenseTypeCharging => 'Charging';
+
+  @override
+  String get expenseTypeService => 'Workshop/Service';
+
+  @override
+  String get expenseTypeOther => 'Other';
+
+  @override
   String get deleteExpense => 'Delete Expense';
 
   @override
@@ -327,6 +339,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentType => 'Payment type';
 
   @override
+  String get paymentTypeCash => 'Cash';
+
+  @override
+  String get paymentTypePaypal => 'PayPal';
+
+  @override
+  String get paymentTypeBankTransfer => 'Bank transfer';
+
+  @override
+  String get paymentTypeOther => 'Other';
+
+  @override
   String get paymentFrom => 'From';
 
   @override
@@ -337,6 +361,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paymentSelectRecipient => 'Select the recipient';
+
+  @override
+  String get paymentSenderReceiverMustDiffer =>
+      'Sender and recipient must be different users';
 
   @override
   String get deletePayment => 'Delete Payment';
@@ -477,10 +505,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseSelectStartTime => 'Please select a start time';
 
   @override
+  String get pleaseSelectEndTime => 'Please select an end time';
+
+  @override
   String get enterWholeNumber => 'Enter a whole number';
 
   @override
   String get enterValidNumber => 'Enter a valid number';
+
+  @override
+  String get tripSelectAtLeastOneUser => 'Select at least one user';
+
+  @override
+  String get tripEndMileageMustExceedStart =>
+      'End mileage must be greater than start mileage';
+
+  @override
+  String get tripEndDateMustNotBeBeforeStart =>
+      'End date must be on or after the start date';
+
+  @override
+  String get tripDatesCannotBeInFuture => 'Trip dates cannot be in the future';
+
+  @override
+  String tripStartDateMustNotBeBeforePreviousEnd(Object date) {
+    return 'Start date cannot be before the previous trip ended on $date';
+  }
 
   @override
   String get board_system_trip_added =>

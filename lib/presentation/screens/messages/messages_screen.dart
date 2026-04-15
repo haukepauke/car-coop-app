@@ -91,11 +91,12 @@ class _MessagesScreenState extends ConsumerState<MessagesScreen> {
   Widget build(BuildContext context) {
     final carId = ref.watch(selectedCarIdProvider);
     final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).toString();
 
     if (carId == null) return Center(child: Text(l10n.noCarSelected));
 
     final apiUrl = ref.watch(apiUrlProvider) ?? '';
-    final dateFmt = DateFormat('MMM d, HH:mm');
+    final dateFmt = DateFormat.MMMd(locale).add_Hm();
 
     return Scaffold(
       body: Column(

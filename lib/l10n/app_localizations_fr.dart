@@ -308,6 +308,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get expenseAmount => 'Montant (€)';
 
   @override
+  String get expenseTypeFuel => 'Carburant';
+
+  @override
+  String get expenseTypeCharging => 'Recharge';
+
+  @override
+  String get expenseTypeService => 'Atelier/Service';
+
+  @override
+  String get expenseTypeOther => 'Autre';
+
+  @override
   String get deleteExpense => 'Supprimer la dépense';
 
   @override
@@ -329,6 +341,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get paymentType => 'Type de paiement';
 
   @override
+  String get paymentTypeCash => 'Espèces';
+
+  @override
+  String get paymentTypePaypal => 'PayPal';
+
+  @override
+  String get paymentTypeBankTransfer => 'Virement bancaire';
+
+  @override
+  String get paymentTypeOther => 'Autre';
+
+  @override
   String get paymentFrom => 'De';
 
   @override
@@ -339,6 +363,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get paymentSelectRecipient => 'Sélectionner le destinataire';
+
+  @override
+  String get paymentSenderReceiverMustDiffer =>
+      'L\'expéditeur et le destinataire doivent être des utilisateurs différents';
 
   @override
   String get deletePayment => 'Supprimer le paiement';
@@ -480,10 +508,33 @@ class AppLocalizationsFr extends AppLocalizations {
       'Veuillez sélectionner une heure de départ';
 
   @override
+  String get pleaseSelectEndTime => 'Veuillez sélectionner une heure de fin';
+
+  @override
   String get enterWholeNumber => 'Entrez un nombre entier';
 
   @override
   String get enterValidNumber => 'Entrez un nombre valide';
+
+  @override
+  String get tripSelectAtLeastOneUser => 'Sélectionnez au moins un utilisateur';
+
+  @override
+  String get tripEndMileageMustExceedStart =>
+      'Le kilométrage de fin doit être supérieur au kilométrage de départ';
+
+  @override
+  String get tripEndDateMustNotBeBeforeStart =>
+      'La date de fin doit être postérieure ou égale à la date de début';
+
+  @override
+  String get tripDatesCannotBeInFuture =>
+      'Les dates du trajet ne peuvent pas être dans le futur';
+
+  @override
+  String tripStartDateMustNotBeBeforePreviousEnd(Object date) {
+    return 'La date de début ne peut pas être antérieure à la fin du trajet précédent, le $date';
+  }
 
   @override
   String get board_system_trip_added =>

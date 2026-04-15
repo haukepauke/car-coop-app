@@ -51,6 +51,16 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
     });
   }
 
+  String _typeLabel(AppLocalizations l10n, String type) {
+    return switch (type) {
+      'cash' => l10n.paymentTypeCash,
+      'paypal' => l10n.paymentTypePaypal,
+      'banktransfer' => l10n.paymentTypeBankTransfer,
+      'other' => l10n.paymentTypeOther,
+      _ => type,
+    };
+  }
+
   Future<void> _pickDate() async {
     final date = await showDatePicker(
       context: context,
@@ -62,7 +72,18 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
   }
 
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
+    if (_paidByUserId != null &&
+        _paidToUserId != null &&
+        _paidByUserId == _paidToUserId) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.paymentSenderReceiverMustDiffer,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
     setState(() => _loading = true);
     try {
       final carId = ref.read(selectedCarIdProvider)!;
@@ -104,11 +125,13 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
     final members = ref.watch(selectedCarProvider)?.members ?? [];
     final memberItems = members
         .map((m) => DropdownMenuItem(value: m.id, child: Text(m.name)))
         .toList();
     final l10n = AppLocalizations.of(context)!;
+    final dateFmt = DateFormat.yMMMd(locale);
 
     return Scaffold(
       appBar: AppBar(title: Text(_isEditing ? l10n.editPayment : l10n.newPayment)),
@@ -122,7 +145,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
               ListTile(
                 leading: const Icon(Icons.calendar_today),
                 title: Text(l10n.date),
-                subtitle: Text(DateFormat('MMM d, yyyy').format(_date)),
+                subtitle: Text(dateFmt.format(_date)),
                 onTap: _pickDate,
                 tileColor: Theme.of(context).colorScheme.surfaceContainerHighest,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -152,7 +175,7 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
                 items: Payment.types
                     .map((t) => DropdownMenuItem(
                           value: t,
-                          child: Text(t[0].toUpperCase() + t.substring(1)),
+                          child: Text(_typeLabel(l10n, t)),
                         ),)
                     .toList(),
                 onChanged: (v) => setState(() => _type = v!),
@@ -179,7 +202,13 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
                 ),
                 items: memberItems,
                 onChanged: (v) => setState(() => _paidToUserId = v),
-                validator: (v) => v == null ? l10n.paymentSelectRecipient : null,
+                validator: (v) {
+                  if (v == null) return l10n.paymentSelectRecipient;
+                  if (_paidByUserId != null && v == _paidByUserId) {
+                    return l10n.paymentSenderReceiverMustDiffer;
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(

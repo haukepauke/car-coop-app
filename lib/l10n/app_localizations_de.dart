@@ -243,10 +243,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tripComment => 'Kommentar (optional)';
 
   @override
-  String get tripUsers => 'Fahrer';
+  String get tripUsers => 'Fahrer:in';
 
   @override
-  String get tripDriver => 'Fahrer';
+  String get tripDriver => 'Fahrer:in';
 
   @override
   String get tripMultipleDrivers => 'Mehrere';
@@ -307,6 +307,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get expenseAmount => 'Betrag (€)';
 
   @override
+  String get expenseTypeFuel => 'Kraftstoff';
+
+  @override
+  String get expenseTypeCharging => 'Laden';
+
+  @override
+  String get expenseTypeService => 'Werkstatt/Service';
+
+  @override
+  String get expenseTypeOther => 'Sonstiges';
+
+  @override
   String get deleteExpense => 'Ausgabe löschen';
 
   @override
@@ -328,6 +340,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get paymentType => 'Zahlungsart';
 
   @override
+  String get paymentTypeCash => 'Bar';
+
+  @override
+  String get paymentTypePaypal => 'PayPal';
+
+  @override
+  String get paymentTypeBankTransfer => 'Banküberweisung';
+
+  @override
+  String get paymentTypeOther => 'Sonstiges';
+
+  @override
   String get paymentFrom => 'Von';
 
   @override
@@ -337,7 +361,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get paymentSelectPaidBy => 'Wer hat bezahlt?';
 
   @override
-  String get paymentSelectRecipient => 'Empfänger auswählen';
+  String get paymentSelectRecipient => 'Empfänger:in auswählen';
+
+  @override
+  String get paymentSenderReceiverMustDiffer =>
+      'Sender:in und Empfänger:in müssen unterschiedliche Benutzer:innen sein';
 
   @override
   String get deletePayment => 'Zahlung löschen';
@@ -438,10 +466,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get date => 'Datum';
 
   @override
-  String get user => 'Benutzer';
+  String get user => 'Benutzer:in';
 
   @override
-  String get selectUser => 'Benutzer auswählen';
+  String get selectUser => 'Benutzer:in auswählen';
 
   @override
   String get amountRequired => 'Betrag ist erforderlich';
@@ -477,10 +505,33 @@ class AppLocalizationsDe extends AppLocalizations {
   String get pleaseSelectStartTime => 'Bitte Startzeit auswählen';
 
   @override
+  String get pleaseSelectEndTime => 'Bitte Endzeit auswählen';
+
+  @override
   String get enterWholeNumber => 'Ganze Zahl eingeben';
 
   @override
   String get enterValidNumber => 'Gültige Zahl eingeben';
+
+  @override
+  String get tripSelectAtLeastOneUser => 'Mindestens einen Benutzer auswählen';
+
+  @override
+  String get tripEndMileageMustExceedStart =>
+      'Der Endkilometerstand muss größer als der Startkilometerstand sein';
+
+  @override
+  String get tripEndDateMustNotBeBeforeStart =>
+      'Das Enddatum muss am oder nach dem Startdatum liegen';
+
+  @override
+  String get tripDatesCannotBeInFuture =>
+      'Fahrtdaten dürfen nicht in der Zukunft liegen';
+
+  @override
+  String tripStartDateMustNotBeBeforePreviousEnd(Object date) {
+    return 'Das Startdatum darf nicht vor dem Ende der vorherigen Fahrt am $date liegen';
+  }
 
   @override
   String get board_system_trip_added =>

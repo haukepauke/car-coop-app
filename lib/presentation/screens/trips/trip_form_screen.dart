@@ -25,6 +25,8 @@ class TripFormScreen extends ConsumerStatefulWidget {
 }
 
 class _TripFormScreenState extends ConsumerState<TripFormScreen> {
+  static final _apiDateFormat = DateFormat('yyyy-MM-dd');
+
   final _formKey = GlobalKey<FormState>();
   final _startMileageController = TextEditingController();
   final _endMileageController = TextEditingController();
@@ -194,6 +196,21 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     }
   }
 
+  Trip? _findPreviousTripByMileage(Iterable<Trip> trips, int startMileage) {
+    Trip? previousTrip;
+
+    for (final trip in trips) {
+      if (trip.id == widget.tripId || trip.endMileage == null) continue;
+      if (trip.endMileage! > startMileage) continue;
+
+      if (previousTrip == null || trip.endMileage! > previousTrip.endMileage!) {
+        previousTrip = trip;
+      }
+    }
+
+    return previousTrip;
+  }
+
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
@@ -205,18 +222,85 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
       );
       return;
     }
+    if (_endTime == null) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.pleaseSelectEndTime,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
+    if (_selectedUserIds.isEmpty) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.tripSelectAtLeastOneUser,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
+    final startMileage = int.tryParse(_startMileageController.text);
+    final endMileage = int.tryParse(_endMileageController.text);
+    if (startMileage == null || endMileage == null) {
+      return;
+    }
+    if (endMileage <= startMileage) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.tripEndMileageMustExceedStart,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
+    if (_endTime!.isBefore(_startTime!)) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.tripEndDateMustNotBeBeforeStart,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
+    final today = DateUtils.dateOnly(DateTime.now());
+    if (DateUtils.dateOnly(_startTime!).isAfter(today) ||
+        DateUtils.dateOnly(_endTime!).isAfter(today)) {
+      await showAppMessageDialog(
+        context,
+        message: l10n.tripDatesCannotBeInFuture,
+        type: AppMessageType.warning,
+      );
+      return;
+    }
+
+    final carId = ref.read(selectedCarIdProvider)!;
+    try {
+      final trips = (await ref.read(tripsProvider(carId).future)).members;
+      if (!mounted) return;
+      final previousTrip = _findPreviousTripByMileage(trips, startMileage);
+      final previousTripEnd = previousTrip?.endTime;
+      if (previousTripEnd != null &&
+          DateUtils.dateOnly(_startTime!).isBefore(DateUtils.dateOnly(previousTripEnd))) {
+        final locale = Localizations.localeOf(context).toString();
+        await showAppMessageDialog(
+          context,
+          message: l10n.tripStartDateMustNotBeBeforePreviousEnd(
+            DateFormat.yMd(locale).format(previousTripEnd),
+          ),
+          type: AppMessageType.warning,
+        );
+        return;
+      }
+    } catch (_) {
+      // Ignore pre-check lookup failures and let the server remain authoritative.
+    }
+
     setState(() => _loading = true);
     try {
-      final carId = ref.read(selectedCarIdProvider)!;
       final data = {
         'car': toIri('cars', carId),
-        'startDate': _startTime!.toIso8601String(),
-        if (_endTime != null) 'endDate': _endTime!.toIso8601String(),
+        'startDate': _apiDateFormat.format(_startTime!),
+        'endDate': _apiDateFormat.format(_endTime!),
         'type': _type,
-        if (_startMileageController.text.isNotEmpty)
-          'startMileage': int.parse(_startMileageController.text),
-        if (_endMileageController.text.isNotEmpty)
-          'endMileage': int.parse(_endMileageController.text),
+        'startMileage': startMileage,
+        'endMileage': endMileage,
         if (_commentController.text.isNotEmpty) 'comment': _commentController.text,
         'users': _selectedUserIds.map((id) => toIri('users', id)).toList(),
       };
@@ -252,7 +336,8 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final fmt = DateFormat('MMM d, yyyy HH:mm');
+    final locale = Localizations.localeOf(context).toString();
+    final fmt = DateFormat.yMMMd(locale).add_Hm();
     final members = ref.watch(selectedCarProvider)?.members ?? [];
     final l10n = AppLocalizations.of(context)!;
 
@@ -275,7 +360,7 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
                   filled: true,
                 ),
                 validator: (v) {
-                  if (v != null && v.isNotEmpty && int.tryParse(v) == null) {
+                  if (v == null || v.isEmpty || int.tryParse(v) == null) {
                     return l10n.enterWholeNumber;
                   }
                   return null;
@@ -297,8 +382,15 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
                         helperText: _endMileageReadOnly ? l10n.tripEndMileageLocked : null,
                       ),
                       validator: (v) {
-                        if (v != null && v.isNotEmpty && int.tryParse(v) == null) {
+                        if (v == null || v.isEmpty || int.tryParse(v) == null) {
                           return l10n.enterWholeNumber;
+                        }
+                        final endMileage = int.tryParse(v);
+                        final startMileage = int.tryParse(_startMileageController.text);
+                        if (endMileage != null &&
+                            startMileage != null &&
+                            endMileage <= startMileage) {
+                          return l10n.tripEndMileageMustExceedStart;
                         }
                         return null;
                       },

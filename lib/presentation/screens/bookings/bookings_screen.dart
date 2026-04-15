@@ -173,7 +173,8 @@ class _ListTab extends ConsumerWidget {
         onAction: () => context.push('/bookings/new'),
       );
     }
-    final fmt = DateFormat('MMM d, HH:mm');
+    final locale = Localizations.localeOf(context).toString();
+    final fmt = DateFormat.MMMd(locale).add_Hm();
     return ListView.builder(
       padding: const EdgeInsets.only(bottom: 96),
       itemCount: bookings.length,

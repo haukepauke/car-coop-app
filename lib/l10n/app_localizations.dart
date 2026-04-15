@@ -694,6 +694,30 @@ abstract class AppLocalizations {
   /// **'Amount (€)'**
   String get expenseAmount;
 
+  /// No description provided for @expenseTypeFuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel'**
+  String get expenseTypeFuel;
+
+  /// No description provided for @expenseTypeCharging.
+  ///
+  /// In en, this message translates to:
+  /// **'Charging'**
+  String get expenseTypeCharging;
+
+  /// No description provided for @expenseTypeService.
+  ///
+  /// In en, this message translates to:
+  /// **'Workshop/Service'**
+  String get expenseTypeService;
+
+  /// No description provided for @expenseTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get expenseTypeOther;
+
   /// No description provided for @deleteExpense.
   ///
   /// In en, this message translates to:
@@ -736,6 +760,30 @@ abstract class AppLocalizations {
   /// **'Payment type'**
   String get paymentType;
 
+  /// No description provided for @paymentTypeCash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get paymentTypeCash;
+
+  /// No description provided for @paymentTypePaypal.
+  ///
+  /// In en, this message translates to:
+  /// **'PayPal'**
+  String get paymentTypePaypal;
+
+  /// No description provided for @paymentTypeBankTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank transfer'**
+  String get paymentTypeBankTransfer;
+
+  /// No description provided for @paymentTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get paymentTypeOther;
+
   /// No description provided for @paymentFrom.
   ///
   /// In en, this message translates to:
@@ -759,6 +807,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select the recipient'**
   String get paymentSelectRecipient;
+
+  /// No description provided for @paymentSenderReceiverMustDiffer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sender and recipient must be different users'**
+  String get paymentSenderReceiverMustDiffer;
 
   /// No description provided for @deletePayment.
   ///
@@ -1024,6 +1078,12 @@ abstract class AppLocalizations {
   /// **'Please select a start time'**
   String get pleaseSelectStartTime;
 
+  /// No description provided for @pleaseSelectEndTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select an end time'**
+  String get pleaseSelectEndTime;
+
   /// No description provided for @enterWholeNumber.
   ///
   /// In en, this message translates to:
@@ -1035,6 +1095,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a valid number'**
   String get enterValidNumber;
+
+  /// No description provided for @tripSelectAtLeastOneUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Select at least one user'**
+  String get tripSelectAtLeastOneUser;
+
+  /// No description provided for @tripEndMileageMustExceedStart.
+  ///
+  /// In en, this message translates to:
+  /// **'End mileage must be greater than start mileage'**
+  String get tripEndMileageMustExceedStart;
+
+  /// No description provided for @tripEndDateMustNotBeBeforeStart.
+  ///
+  /// In en, this message translates to:
+  /// **'End date must be on or after the start date'**
+  String get tripEndDateMustNotBeBeforeStart;
+
+  /// No description provided for @tripDatesCannotBeInFuture.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip dates cannot be in the future'**
+  String get tripDatesCannotBeInFuture;
+
+  /// No description provided for @tripStartDateMustNotBeBeforePreviousEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date cannot be before the previous trip ended on {date}'**
+  String tripStartDateMustNotBeBeforePreviousEnd(Object date);
 
   /// No description provided for @board_system_trip_added.
   ///

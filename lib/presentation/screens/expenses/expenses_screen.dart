@@ -17,6 +17,7 @@ class ExpensesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = Localizations.localeOf(context).toString();
     final carId = ref.watch(selectedCarIdProvider);
     final l10n = AppLocalizations.of(context)!;
 
@@ -24,7 +25,7 @@ class ExpensesScreen extends ConsumerWidget {
 
     final expensesAsync = ref.watch(expensesProvider(carId));
     final currencyFmt = NumberFormat.currency(symbol: '€');
-    final dateFmt = DateFormat('MMM d, yyyy');
+    final dateFmt = DateFormat.yMMMd(locale);
 
     return Scaffold(
       body: Column(

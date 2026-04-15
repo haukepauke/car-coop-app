@@ -101,7 +101,8 @@ class _TripCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFmt = DateFormat('d MMM yyyy, HH:mm');
+    final locale = Localizations.localeOf(context).toString();
+    final dateFmt = DateFormat.yMMMd(locale).add_Hm();
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
 

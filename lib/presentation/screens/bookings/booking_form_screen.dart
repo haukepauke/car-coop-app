@@ -123,7 +123,8 @@ class _BookingFormScreenState extends ConsumerState<BookingFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final fmt = DateFormat('MMM d, yyyy HH:mm');
+    final locale = Localizations.localeOf(context).toString();
+    final fmt = DateFormat.yMMMd(locale).add_Hm();
     final members = ref.watch(selectedCarProvider)?.members ?? [];
     final memberItems = members
         .map((m) => DropdownMenuItem(value: m.id, child: Text(m.name)))

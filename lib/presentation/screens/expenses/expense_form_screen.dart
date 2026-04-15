@@ -7,6 +7,7 @@ import '../../../core/extensions/string_extensions.dart';
 import '../../../core/extensions/exception_extensions.dart'; 
 import '../../../data/api/expense_api.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/auth_provider.dart';
 import '../../../providers/expense_provider.dart';
 import '../../../providers/car_provider.dart';
 import '../../widgets/common/app_message_dialog.dart';
@@ -37,7 +38,37 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
   @override
   void initState() {
     super.initState();
-    if (_isEditing) _loadExpense();
+    if (_isEditing) {
+      _loadExpense();
+    } else {
+      _initNewExpense();
+    }
+  }
+
+  void _applyCurrentUser() {
+    final currentUser = ref.read(currentUserProvider);
+    if (currentUser != null && mounted) {
+      setState(() => _userId = currentUser.id);
+    }
+  }
+
+  void _initNewExpense() {
+    _applyCurrentUser();
+    if (_userId == null) {
+      ref.listenManual(currentUserProvider, (_, user) {
+        if (user != null && _userId == null) _applyCurrentUser();
+      });
+    }
+  }
+
+  String _typeLabel(AppLocalizations l10n, String type) {
+    return switch (type) {
+      'fuel' => l10n.expenseTypeFuel,
+      'charging' => l10n.expenseTypeCharging,
+      'service' => l10n.expenseTypeService,
+      'other' => l10n.expenseTypeOther,
+      _ => type,
+    };
   }
 
   Future<void> _loadExpense() async {
@@ -106,11 +137,13 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
     final members = ref.watch(selectedCarProvider)?.members ?? [];
     final memberItems = members
         .map((m) => DropdownMenuItem(value: m.id, child: Text(m.name)))
         .toList();
     final l10n = AppLocalizations.of(context)!;
+    final dateFmt = DateFormat.yMMMd(locale);
 
     return Scaffold(
       appBar: AppBar(title: Text(_isEditing ? l10n.editExpense : l10n.newExpense)),
@@ -124,7 +157,7 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
               ListTile(
                 leading: const Icon(Icons.calendar_today),
                 title: Text(l10n.date),
-                subtitle: Text(DateFormat('MMM d, yyyy').format(_date)),
+                subtitle: Text(dateFmt.format(_date)),
                 onTap: _pickDate,
                 tileColor: Theme.of(context).colorScheme.surfaceContainerHighest,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -140,7 +173,7 @@ class _ExpenseFormScreenState extends ConsumerState<ExpenseFormScreen> {
                 items: _types
                     .map((t) => DropdownMenuItem(
                           value: t,
-                          child: Text(t[0].toUpperCase() + t.substring(1)),
+                          child: Text(_typeLabel(l10n, t)),
                         ),)
                     .toList(),
                 onChanged: (v) => setState(() => _type = v!),

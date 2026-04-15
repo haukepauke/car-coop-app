@@ -18,6 +18,7 @@ class PaymentsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = Localizations.localeOf(context).toString();
     final carId = ref.watch(selectedCarIdProvider);
     final l10n = AppLocalizations.of(context)!;
 
@@ -26,7 +27,7 @@ class PaymentsScreen extends ConsumerWidget {
     final paymentsAsync = ref.watch(paymentsProvider(carId));
     final members = ref.watch(selectedCarProvider)?.members ?? [];
     final currencyFmt = NumberFormat.currency(symbol: '€');
-    final dateFmt = DateFormat('MMM d, yyyy');
+    final dateFmt = DateFormat.yMMMd(locale);
 
     String userName(UserRef? userRef) {
       if (userRef == null) return '?';
