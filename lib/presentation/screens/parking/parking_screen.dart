@@ -1,4 +1,8 @@
+import 'dart:math' as math;
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,6 +18,39 @@ import '../../widgets/common/async_value_widget.dart';
 import '../../widgets/common/app_message_dialog.dart';
 import '../../widgets/common/page_header.dart';
 
+class _ParkingTileCacheManager extends CacheManager {
+  _ParkingTileCacheManager._()
+      : super(
+          Config(
+            'parking-osm-tiles',
+            stalePeriod: const Duration(days: 14),
+            maxNrOfCacheObjects: 300,
+          ),
+        );
+
+  static final instance = _ParkingTileCacheManager._();
+}
+
+class _CachedTileProvider extends TileProvider {
+  _CachedTileProvider()
+      : super(
+          headers: const {
+            'User-Agent': 'com.carcoop.app',
+          },
+        );
+
+  @override
+  ImageProvider getImage(TileCoordinates coordinates, TileLayer options) {
+    final url = getTileUrl(coordinates, options);
+    return CachedNetworkImageProvider(
+      url,
+      headers: headers,
+      cacheManager: _ParkingTileCacheManager.instance,
+      cacheKey: url,
+    );
+  }
+}
+
 class ParkingScreen extends ConsumerStatefulWidget {
   const ParkingScreen({super.key});
 
@@ -24,6 +61,47 @@ class ParkingScreen extends ConsumerStatefulWidget {
 class _ParkingScreenState extends ConsumerState<ParkingScreen> {
   final _mapController = MapController();
   bool _saving = false;
+  String? _lastPrefetchedKey;
+
+  Future<void> _prefetchTilesAround(LatLng center, {int zoom = 15}) async {
+    final key = '${center.latitude.toStringAsFixed(5)},'
+        '${center.longitude.toStringAsFixed(5)}@$zoom';
+    if (_lastPrefetchedKey == key) return;
+    _lastPrefetchedKey = key;
+
+    final tile = _latLngToTile(center, zoom);
+    final futures = <Future<void>>[];
+    for (var dx = -1; dx <= 1; dx++) {
+      for (var dy = -1; dy <= 1; dy++) {
+        final x = tile.x + dx;
+        final y = tile.y + dy;
+        final url = 'https://tile.openstreetmap.org/$zoom/$x/$y.png';
+        futures.add(
+          _ParkingTileCacheManager.instance
+              .downloadFile(url, key: url)
+              .then((_) {})
+              .catchError((_) {}),
+        );
+      }
+    }
+
+    await Future.wait(futures);
+  }
+
+  math.Point<int> _latLngToTile(LatLng latLng, int zoom) {
+    final scale = 1 << zoom;
+    final x = ((latLng.longitude + 180.0) / 360.0 * scale).floor();
+    final latRad = latLng.latitude * math.pi / 180.0;
+    final y = ((1 -
+                math.log(
+                      math.tan(latRad) + 1 / math.cos(latRad),
+                    ) /
+                    math.pi) /
+            2 *
+            scale)
+        .floor();
+    return math.Point<int>(x, y);
+  }
 
   Future<void> _navigateTo(double lat, double lng) async {
     final l10n = AppLocalizations.of(context)!;
@@ -75,7 +153,9 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
 
       ref.invalidate(parkingLocationsProvider(carId));
 
-      _mapController.move(LatLng(position.latitude, position.longitude), 15);
+      final currentLatLng = LatLng(position.latitude, position.longitude);
+      _mapController.move(currentLatLng, 15);
+      _prefetchTilesAround(currentLatLng);
 
       if (mounted) {
         await showAppMessageDialog(
@@ -131,6 +211,12 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
                     ? LatLng(last.latitude, last.longitude)
                     : const LatLng(51.5, 10.0);
 
+                if (last != null) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    _prefetchTilesAround(center);
+                  });
+                }
+
                 return FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(initialCenter: center, initialZoom: 15),
@@ -138,6 +224,7 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
                     TileLayer(
                       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                       userAgentPackageName: 'com.carcoop.app',
+                      tileProvider: _CachedTileProvider(),
                     ),
                     MarkerLayer(markers: markers),
                   ],
