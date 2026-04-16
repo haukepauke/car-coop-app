@@ -12,6 +12,14 @@ subprojects {
 subprojects {
     project.evaluationDependsOn(":app")
 }
+subprojects { subproject ->
+    subproject.plugins.withId("com.android.library") {
+        if (subproject.name == "flutter_plugin_android_lifecycle") {
+            // Required for resource verification with current Flutter/AGP plugin resolution.
+            subproject.dependencies.add("implementation", "androidx.core:core:1.17.0")
+        }
+    }
+}
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir

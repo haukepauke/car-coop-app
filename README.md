@@ -24,6 +24,7 @@ The mobile companion app for **Car Coop**, a self-hosted platform designed for s
 ### Prerequisites
 
 *   Flutter SDK (stable channel)
+*   JDK 17 or newer with `javac` available
 *   A running [Car Coop Server](https://github.com/haukepauke/car-coop) instance.
 
 ### Configuration
@@ -54,7 +55,18 @@ The Android app is prepared for F-Droid publication:
     ```bash
     dart run build_runner build --delete-conflicting-outputs
     ```
-4.  Run the app:
+4.  Generate `android/local.properties` if you want to build with the Gradle wrapper directly:
+    ```bash
+    flutter config --android-sdk <path-to-android-sdk>
+    flutter pub get
+    ```
+    Alternatively, export `FLUTTER_ROOT` and let Gradle pick up the Flutter SDK from the environment.
+5.  Run the app:
     ```bash
     flutter run
+    ```
+6.  Build the unsigned Android release artifact:
+    ```bash
+    cd android
+    ./gradlew assembleRelease
     ```
