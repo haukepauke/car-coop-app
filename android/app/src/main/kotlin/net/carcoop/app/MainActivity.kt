@@ -1,4 +1,4 @@
-package com.carcoop.app
+package net.carcoop.app
 
 import io.flutter.embedding.android.FlutterActivity
 

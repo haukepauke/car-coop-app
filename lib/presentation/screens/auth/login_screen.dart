@@ -141,7 +141,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: 8),
               TextButton(
-                onPressed: () => context.go('/setup'),
+                onPressed: () => context.go('/setup?edit=1'),
                 child: Text(l10n.changeServerUrl),
               ),
               const SizedBox(height: 8),

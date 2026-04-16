@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -171,6 +172,18 @@ class _MessageCard extends StatelessWidget {
   final String apiUrl;
   final DateFormat dateFmt;
 
+  void _openPhotoViewer(BuildContext context, String photoPath, int index) {
+    final imageUrl = '$apiUrl/uploads/messages/$photoPath';
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => _MessagePhotoViewer(
+          imageUrl: imageUrl,
+          heroTag: 'message-photo-${m.id}-$index',
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -213,19 +226,79 @@ class _MessageCard extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: m.photos.length,
                   separatorBuilder: (_, __) => const SizedBox(width: 8),
-                  itemBuilder: (context, i) => ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      '$apiUrl/uploads/messages/${m.photos[i]}',
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  itemBuilder: (context, i) {
+                    final photoPath = m.photos[i];
+                    final imageUrl = '$apiUrl/uploads/messages/$photoPath';
+                    final heroTag = 'message-photo-${m.id}-$i';
+
+                    return GestureDetector(
+                      onTap: () => _openPhotoViewer(context, photoPath, i),
+                      child: Hero(
+                        tag: heroTag,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                            placeholder: (_, __) =>
+                                const Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                            errorWidget: (_, __, ___) => const ColoredBox(
+                              color: Colors.black12,
+                              child: SizedBox(
+                                width: 80,
+                                height: 80,
+                                child: Icon(Icons.broken_image_outlined),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MessagePhotoViewer extends StatelessWidget {
+  const _MessagePhotoViewer({
+    required this.imageUrl,
+    required this.heroTag,
+  });
+
+  final String imageUrl;
+  final String heroTag;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Hero(
+          tag: heroTag,
+          child: InteractiveViewer(
+            minScale: 0.8,
+            maxScale: 4,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              fit: BoxFit.contain,
+              placeholder: (_, __) =>
+                  const Center(child: CircularProgressIndicator(color: Colors.white)),
+              errorWidget: (_, __, ___) =>
+                  const Icon(Icons.broken_image_outlined, color: Colors.white, size: 48),
+            ),
+          ),
         ),
       ),
     );

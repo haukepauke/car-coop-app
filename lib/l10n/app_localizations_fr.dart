@@ -238,7 +238,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tripTypeTransport => 'Transport';
 
   @override
-  String get tripTypeService => 'Atelier/Service';
+  String get tripTypeOther => 'Autre';
+
+  @override
+  String get tripTypeServiceFree => 'Service (gratuit)';
+
+  @override
+  String get tripTypeOtherFree => 'Autre (gratuit)';
+
+  @override
+  String get tripTypePlaceholderFree => 'Espace réservé (gratuit)';
 
   @override
   String get tripComment => 'Commentaire (optionnel)';
@@ -324,6 +333,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get deleteExpenseConfirm => 'Supprimer cette dépense ?';
+
+  @override
+  String get commonBy => 'par';
 
   @override
   String get paymentsTitle => 'Paiements';
@@ -453,7 +465,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tempTripNotice =>
-      'Oh là là ! Quelqu\'un semble avoir oublié d\'ajouter le dernier trajet. Nous allons maintenant créer un trajet temporaire afin que le compteur kilométrique et notre carnet de bord correspondent. Le groupe doit découvrir pourquoi cet écart existe.';
+      'Oh là là ! Quelqu\'un semble avoir oublié d\'ajouter le dernier trajet. Nous allons maintenant créer un trajet de remplacement afin que le compteur kilométrique et notre carnet de bord correspondent. Le groupe doit découvrir pourquoi cet écart existe.';
+
+  @override
+  String get tripPlaceholderComment => 'Trajet manquant. À discuter';
 
   @override
   String get haveNiceTrip => 'Bon trajet !';
@@ -475,6 +490,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get amountRequired => 'Le montant est requis';
+
+  @override
+  String get amountMustBeGreaterThanZero =>
+      'Le montant doit être supérieur à 0';
 
   @override
   String get create => 'Créer';

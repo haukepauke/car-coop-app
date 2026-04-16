@@ -17,6 +17,15 @@ class _FirstSetupScreenState extends ConsumerState<FirstSetupScreen> {
   final _urlController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    final currentUrl = ref.read(apiUrlProvider);
+    if (currentUrl != null && currentUrl.isNotEmpty) {
+      _urlController.text = currentUrl;
+    }
+  }
+
+  @override
   void dispose() {
     _urlController.dispose();
     super.dispose();

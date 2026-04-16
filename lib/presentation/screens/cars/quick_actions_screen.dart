@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/settings_provider.dart';
+import '../trips/trip_form_screen.dart';
 import '../../widgets/common/app_message_dialog.dart';
 
 class QuickActionsScreen extends ConsumerStatefulWidget {
@@ -254,7 +255,15 @@ class _QuickActionsScreenState extends ConsumerState<QuickActionsScreen> {
                     type: AppMessageType.info,
                   );
                   if (!mounted) return;
-                  _navigateAfterDialog(() => context.go('/trips/new'));
+                  _navigateAfterDialog(
+                    () => context.push(
+                      '/trips/new',
+                      extra: TripFormPreset(
+                        type: 'placeholder_free',
+                        comment: l10n.tripPlaceholderComment,
+                      ),
+                    ),
+                  );
                 },
                 child: Text(l10n.no),
               ),

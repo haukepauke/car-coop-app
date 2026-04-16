@@ -160,7 +160,9 @@ class _PaymentFormScreenState extends ConsumerState<PaymentFormScreen> {
                 ),
                 validator: (v) {
                   if (v == null || v.isEmpty) return l10n.amountRequired;
-                  if (double.tryParse(v) == null) return l10n.enterValidNumber;
+                  final amount = double.tryParse(v);
+                  if (amount == null) return l10n.enterValidNumber;
+                  if (amount <= 0) return l10n.amountMustBeGreaterThanZero;
                   return null;
                 },
               ),

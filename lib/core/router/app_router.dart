@@ -60,11 +60,15 @@ GoRouter appRouter(AppRouterRef ref) {
 
       final hasApiUrl = apiUrl != null && apiUrl.isNotEmpty;
       final loc = state.matchedLocation;
+      final isSetupEditMode = state.uri.queryParameters['edit'] == '1';
 
       if (!hasApiUrl) return loc == '/setup' ? null : '/setup';
       if (authState.isLoading) return null;
       final isLoggedIn = authState.value != null;
-      if (!isLoggedIn) return (loc == '/login' || loc == '/setup') ? null : '/login';
+      if (!isLoggedIn) {
+        if (loc == '/setup' && isSetupEditMode) return null;
+        return loc == '/login' ? null : '/login';
+      }
       if (loc == '/setup' || loc == '/login') {
         return '/cars';
       }
@@ -123,7 +127,9 @@ GoRouter appRouter(AppRouterRef ref) {
             routes: [
               GoRoute(
                 path: 'new',
-                builder: (context, state) => const TripFormScreen(),
+                builder: (context, state) => TripFormScreen(
+                  preset: state.extra as TripFormPreset?,
+                ),
               ),
               GoRoute(
                 path: ':id/edit',

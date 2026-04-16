@@ -18,7 +18,14 @@ class Trip {
     this.users = const [],
   });
 
-  static const types = ['vacation', 'transport', 'service'];
+  static const types = [
+    'vacation',
+    'transport',
+    'other',
+    'service_free',
+    'other_free',
+    'placeholder_free',
+  ];
 
   final int id;
   final String? car;

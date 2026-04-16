@@ -83,7 +83,10 @@
   "tripType": "Type",
   "tripTypeVacation": "Vacation",
   "tripTypeTransport": "Transport",
-  "tripTypeService": "Workshop/Service",
+  "tripTypeOther": "Other",
+  "tripTypeServiceFree": "Service (free)",
+  "tripTypeOtherFree": "Other (free)",
+  "tripTypePlaceholderFree": "Placeholder (free)",
   "tripComment": "Comment (optional)",
   "tripUsers": "Users",
   "tripDriver": "Driver",
@@ -113,6 +116,7 @@
   "expenseTypeOther": "Other",
   "deleteExpense": "Delete Expense",
   "deleteExpenseConfirm": "Delete this expense?",
+  "commonBy": "by",
 
   "paymentsTitle": "Payments",
   "noPayments": "No payments yet",
@@ -169,7 +173,8 @@
       "mileage": { "type": "int" }
     }
   },
-  "tempTripNotice": "Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.",
+  "tempTripNotice": "Oh, oh! Someone seems to have missed adding the last trip. We will now create a placeholder trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.",
+  "tripPlaceholderComment": "Missing trip. Needs to be discussed",
   "haveNiceTrip": "Have a nice trip!",
   "yes": "Yes",
   "no": "No",
@@ -178,6 +183,7 @@
   "user": "User",
   "selectUser": "Select a user",
   "amountRequired": "Amount is required",
+  "amountMustBeGreaterThanZero": "Amount must be greater than 0",
   "create": "Create",
   "update": "Update",
   "notSet": "Not set",

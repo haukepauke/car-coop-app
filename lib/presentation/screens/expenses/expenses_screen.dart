@@ -52,7 +52,9 @@ class ExpensesScreen extends ConsumerWidget {
                     final e = expenses[index];
                     return ListTile(
                       title: Text('${e.name ?? e.category} · ${currencyFmt.format(e.amount)}'),
-                      subtitle: Text('${dateFmt.format(e.date)} by ${e.user?.name ?? 'Unknown'}'),
+                      subtitle: Text(
+                        '${dateFmt.format(e.date)} ${l10n.commonBy} ${e.user?.name ?? 'Unknown'}',
+                      ),
                       trailing: IconButton(
                         icon: const Icon(Icons.edit_outlined),
                         onPressed: () => context.push('/expenses/${e.id}/edit'),

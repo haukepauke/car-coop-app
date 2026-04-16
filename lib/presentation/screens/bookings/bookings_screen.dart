@@ -118,12 +118,15 @@ class _CalendarTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context).toString();
+
     return Column(
       children: [
         TableCalendar<Booking>(
           firstDay: DateTime.utc(2020),
           lastDay: DateTime.utc(2030),
           focusedDay: focusedDay,
+          locale: locale,
           selectedDayPredicate: (day) => isSameDay(selectedDay, day),
           eventLoader: _eventsForDay,
           onDaySelected: onDaySelected,
@@ -142,8 +145,8 @@ class _CalendarTab extends StatelessWidget {
                 return ListTile(
                   title: Text(b.purpose ?? 'Booking'),
                   subtitle: Text(
-                    '${DateFormat.Hm().format(b.startTime)} – '
-                    '${DateFormat.Hm().format(b.endTime)}',
+                    '${DateFormat.Hm(locale).format(b.startTime)} – '
+                    '${DateFormat.Hm(locale).format(b.endTime)}',
                   ),
                 );
               }).toList(),

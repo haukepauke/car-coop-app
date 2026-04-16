@@ -15,10 +15,21 @@ import '../../../providers/car_provider.dart';
 import '../../../providers/trip_provider.dart';
 import '../../widgets/common/app_message_dialog.dart';
 
+class TripFormPreset {
+  const TripFormPreset({
+    this.type,
+    this.comment,
+  });
+
+  final String? type;
+  final String? comment;
+}
+
 class TripFormScreen extends ConsumerStatefulWidget {
-  const TripFormScreen({super.key, this.tripId});
+  const TripFormScreen({super.key, this.tripId, this.preset});
 
   final int? tripId;
+  final TripFormPreset? preset;
 
   @override
   ConsumerState<TripFormScreen> createState() => _TripFormScreenState();
@@ -47,7 +58,20 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     if (_isEditing) {
       _loadTrip();
     } else {
+      _applyPreset();
       _initNewTrip();
+    }
+  }
+
+  void _applyPreset() {
+    final preset = widget.preset;
+    if (preset == null) return;
+
+    if (preset.type != null) {
+      _type = preset.type!;
+    }
+    if (preset.comment != null && preset.comment!.isNotEmpty) {
+      _commentController.text = preset.comment!;
     }
   }
 
@@ -194,6 +218,18 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     } finally {
       if (mounted) setState(() => _scanningMileage = false);
     }
+  }
+
+  String _typeLabel(AppLocalizations l10n, String type) {
+    return switch (type) {
+      'vacation' => l10n.tripTypeVacation,
+      'transport' => l10n.tripTypeTransport,
+      'other' => l10n.tripTypeOther,
+      'service_free' => l10n.tripTypeServiceFree,
+      'other_free' => l10n.tripTypeOtherFree,
+      'placeholder_free' => l10n.tripTypePlaceholderFree,
+      _ => type,
+    };
   }
 
   Trip? _findPreviousTripByMileage(Iterable<Trip> trips, int startMileage) {
@@ -448,11 +484,12 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
                   labelText: l10n.tripType,
                   border: const OutlineInputBorder(),
                 ),
-                items: [
-                  DropdownMenuItem(value: 'vacation', child: Text(l10n.tripTypeVacation)),
-                  DropdownMenuItem(value: 'transport', child: Text(l10n.tripTypeTransport)),
-                  DropdownMenuItem(value: 'service', child: Text(l10n.tripTypeService)),
-                ],
+                items: Trip.types
+                    .map((type) => DropdownMenuItem(
+                          value: type,
+                          child: Text(_typeLabel(l10n, type)),
+                        ),)
+                    .toList(),
                 onChanged: (v) => setState(() => _type = v!),
               ),
               const SizedBox(height: 16),

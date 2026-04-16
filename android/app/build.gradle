@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.carcoop.app"
+    namespace = "net.carcoop.app"
     compileSdk = 36
 
     compileOptions {
@@ -22,7 +22,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.carcoop.app"
+        applicationId = "net.carcoop.app"
         minSdkVersion = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode

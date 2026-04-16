@@ -556,11 +556,29 @@ abstract class AppLocalizations {
   /// **'Transport'**
   String get tripTypeTransport;
 
-  /// No description provided for @tripTypeService.
+  /// No description provided for @tripTypeOther.
   ///
   /// In en, this message translates to:
-  /// **'Workshop/Service'**
-  String get tripTypeService;
+  /// **'Other'**
+  String get tripTypeOther;
+
+  /// No description provided for @tripTypeServiceFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Service (free)'**
+  String get tripTypeServiceFree;
+
+  /// No description provided for @tripTypeOtherFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Other (free)'**
+  String get tripTypeOtherFree;
+
+  /// No description provided for @tripTypePlaceholderFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder (free)'**
+  String get tripTypePlaceholderFree;
 
   /// No description provided for @tripComment.
   ///
@@ -729,6 +747,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete this expense?'**
   String get deleteExpenseConfirm;
+
+  /// No description provided for @commonBy.
+  ///
+  /// In en, this message translates to:
+  /// **'by'**
+  String get commonBy;
 
   /// No description provided for @paymentsTitle.
   ///
@@ -973,8 +997,14 @@ abstract class AppLocalizations {
   /// No description provided for @tempTripNotice.
   ///
   /// In en, this message translates to:
-  /// **'Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.'**
+  /// **'Oh, oh! Someone seems to have missed adding the last trip. We will now create a placeholder trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.'**
   String get tempTripNotice;
+
+  /// No description provided for @tripPlaceholderComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing trip. Needs to be discussed'**
+  String get tripPlaceholderComment;
 
   /// No description provided for @haveNiceTrip.
   ///
@@ -1017,6 +1047,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Amount is required'**
   String get amountRequired;
+
+  /// No description provided for @amountMustBeGreaterThanZero.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount must be greater than 0'**
+  String get amountMustBeGreaterThanZero;
 
   /// No description provided for @create.
   ///

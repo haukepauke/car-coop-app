@@ -235,7 +235,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get tripTypeTransport => 'Transport';
 
   @override
-  String get tripTypeService => 'Garage/Service';
+  String get tripTypeOther => 'Overig';
+
+  @override
+  String get tripTypeServiceFree => 'Service (gratis)';
+
+  @override
+  String get tripTypeOtherFree => 'Overig (gratis)';
+
+  @override
+  String get tripTypePlaceholderFree => 'Tijdelijke aanduiding (gratis)';
 
   @override
   String get tripComment => 'Opmerking (optioneel)';
@@ -321,6 +330,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get deleteExpenseConfirm => 'Deze uitgave verwijderen?';
+
+  @override
+  String get commonBy => 'door';
 
   @override
   String get paymentsTitle => 'Betalingen';
@@ -449,7 +461,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tempTripNotice =>
-      'O jee! Het lijkt erop dat iemand vergeten is de laatste rit toe te voegen. We maken nu een tijdelijke rit aan zodat kilometerstand en logboek weer overeenkomen. De groep moet uitzoeken waarom dit verschil bestaat.';
+      'O jee! Het lijkt erop dat iemand vergeten is de laatste rit toe te voegen. We maken nu een plaatsaanduidingsrit aan zodat kilometerstand en logboek weer overeenkomen. De groep moet uitzoeken waarom dit verschil bestaat.';
+
+  @override
+  String get tripPlaceholderComment => 'Ontbrekende rit. Moet besproken worden';
 
   @override
   String get haveNiceTrip => 'Goede rit!';
@@ -471,6 +486,9 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get amountRequired => 'Bedrag is vereist';
+
+  @override
+  String get amountMustBeGreaterThanZero => 'Bedrag moet groter zijn dan 0';
 
   @override
   String get create => 'Aanmaken';

@@ -236,7 +236,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tripTypeTransport => 'Transport';
 
   @override
-  String get tripTypeService => 'Workshop/Service';
+  String get tripTypeOther => 'Other';
+
+  @override
+  String get tripTypeServiceFree => 'Service (free)';
+
+  @override
+  String get tripTypeOtherFree => 'Other (free)';
+
+  @override
+  String get tripTypePlaceholderFree => 'Placeholder (free)';
 
   @override
   String get tripComment => 'Comment (optional)';
@@ -322,6 +331,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteExpenseConfirm => 'Delete this expense?';
+
+  @override
+  String get commonBy => 'by';
 
   @override
   String get paymentsTitle => 'Payments';
@@ -451,7 +463,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tempTripNotice =>
-      'Oh, oh! Someone seems to have missed adding the last trip. We will now create a temporary trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.';
+      'Oh, oh! Someone seems to have missed adding the last trip. We will now create a placeholder trip so that the odometer and our logbook match. The group needs to find out why this mismatch exists.';
+
+  @override
+  String get tripPlaceholderComment => 'Missing trip. Needs to be discussed';
 
   @override
   String get haveNiceTrip => 'Have a nice trip!';
@@ -473,6 +488,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get amountRequired => 'Amount is required';
+
+  @override
+  String get amountMustBeGreaterThanZero => 'Amount must be greater than 0';
 
   @override
   String get create => 'Create';
