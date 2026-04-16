@@ -45,8 +45,8 @@ dependencies:
   intl: ^0.20.2
   flutter_html: ^3.0.0
   geolocator: ^14.0.2
+  tesseract_ocr: ^0.5.0
   url_launcher: ^6.3.2
-  google_mlkit_text_recognition: ^0.15.1
 
 dev_dependencies:
   flutter_test:
@@ -85,3 +85,5 @@ flutter:
   generate: true
   assets:
     - assets/images/
+    - assets/tessdata_config.json
+    - assets/tessdata/

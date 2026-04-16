@@ -1,0 +1,5 @@
+Initial F-Droid-ready release preparation.
+
+- removed the Google ML Kit OCR dependency
+- added GPL-3.0 licensing
+- added Android metadata for store publication

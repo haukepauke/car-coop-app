@@ -6,7 +6,6 @@ The mobile companion app for **Car Coop**, a self-hosted platform designed for s
 
 - **📅 Booking Management**: Schedule and view car usage with support for both calendar and list views.
 - **🚗 Trip Logging**: Record mileage, duration, and trip types (Vacation, Transport, Workshop).
-- **📸 Mileage Scanning**: Quickly capture odometer readings using OCR from photos.
 - **💰 Expense & Payment Tracking**: Manage shared costs, fuel receipts, and settle balances between members.
 - **💬 Communication**: Integrated message board for group updates and automated system notifications.
 - **📍 Parking**: Save the vehicle's current location and get navigation back to it.
@@ -30,6 +29,19 @@ The mobile companion app for **Car Coop**, a self-hosted platform designed for s
 ### Configuration
 
 Upon first launch, the app will request the **Server URL** of your Car Coop instance. Once connected, you can sign in with your account credentials.
+
+## License
+
+This project is licensed under the GNU General Public License v3.0.
+
+## F-Droid
+
+The Android app is prepared for F-Droid publication:
+
+- only FOSS runtime dependencies are used in the Android app build
+- odometer OCR uses Tesseract with bundled language data
+- the app connects to a user-configurable Car Coop server
+- Android store metadata is included in `fastlane/metadata/android/`
 
 ### Development
 

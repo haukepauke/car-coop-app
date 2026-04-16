@@ -24,18 +24,6 @@
 @import geolocator_apple;
 #endif
 
-#if __has_include(<google_mlkit_commons/GoogleMlKitCommonsPlugin.h>)
-#import <google_mlkit_commons/GoogleMlKitCommonsPlugin.h>
-#else
-@import google_mlkit_commons;
-#endif
-
-#if __has_include(<google_mlkit_text_recognition/GoogleMlKitTextRecognitionPlugin.h>)
-#import <google_mlkit_text_recognition/GoogleMlKitTextRecognitionPlugin.h>
-#else
-@import google_mlkit_text_recognition;
-#endif
-
 #if __has_include(<image_picker_ios/FLTImagePickerPlugin.h>)
 #import <image_picker_ios/FLTImagePickerPlugin.h>
 #else
@@ -60,6 +48,12 @@
 @import sqflite_darwin;
 #endif
 
+#if __has_include(<tesseract_ocr/TesseractOcrPlugin.h>)
+#import <tesseract_ocr/TesseractOcrPlugin.h>
+#else
+@import tesseract_ocr;
+#endif
+
 #if __has_include(<url_launcher_ios/URLLauncherPlugin.h>)
 #import <url_launcher_ios/URLLauncherPlugin.h>
 #else
@@ -72,12 +66,11 @@
   [FlutterNativeSplashPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterNativeSplashPlugin"]];
   [FlutterSecureStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterSecureStoragePlugin"]];
   [GeolocatorPlugin registerWithRegistrar:[registry registrarForPlugin:@"GeolocatorPlugin"]];
-  [GoogleMlKitCommonsPlugin registerWithRegistrar:[registry registrarForPlugin:@"GoogleMlKitCommonsPlugin"]];
-  [GoogleMlKitTextRecognitionPlugin registerWithRegistrar:[registry registrarForPlugin:@"GoogleMlKitTextRecognitionPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FPPPackageInfoPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FPPPackageInfoPlusPlugin"]];
   [SharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"SharedPreferencesPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
+  [TesseractOcrPlugin registerWithRegistrar:[registry registrarForPlugin:@"TesseractOcrPlugin"]];
   [URLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"URLLauncherPlugin"]];
 }
 

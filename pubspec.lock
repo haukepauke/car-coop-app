@@ -589,22 +589,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.8.1"
-  google_mlkit_commons:
-    dependency: transitive
-    description:
-      name: google_mlkit_commons
-      sha256: "3e69fea4211727732cc385104e675ad1e40b29f12edd492ee52fa108423a6124"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.1"
-  google_mlkit_text_recognition:
-    dependency: "direct main"
-    description:
-      name: google_mlkit_text_recognition
-      sha256: "10a8d1a64fa21efda89514f6df88bbb7885be3ae1bfb7a6d229132d802a20d22"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.1"
   graphs:
     dependency: transitive
     description:
@@ -1314,6 +1298,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.2"
+  tesseract_ocr:
+    dependency: "direct main"
+    description:
+      name: tesseract_ocr
+      sha256: "75577a824eb2fe1fd1043337118a88fa20a2b5cf772a212ddd37c176faf34f68"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   test_api:
     dependency: transitive
     description:

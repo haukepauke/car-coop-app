@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:tesseract_ocr/ocr_engine_config.dart';
+import 'package:tesseract_ocr/tesseract_ocr.dart';
 
 import '../../../core/extensions/string_extensions.dart';
 import '../../../core/extensions/exception_extensions.dart';
@@ -165,6 +166,18 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     setState(() => isStart ? _startTime = dt : _endTime = dt);
   }
 
+  String _typeLabel(AppLocalizations l10n, String type) {
+    return switch (type) {
+      'vacation' => l10n.tripTypeVacation,
+      'transport' => l10n.tripTypeTransport,
+      'other' => l10n.tripTypeOther,
+      'service_free' => l10n.tripTypeServiceFree,
+      'other_free' => l10n.tripTypeOtherFree,
+      'placeholder_free' => l10n.tripTypePlaceholderFree,
+      _ => type,
+    };
+  }
+
   Future<void> _scanMileage() async {
     final l10n = AppLocalizations.of(context)!;
     final picker = ImagePicker();
@@ -178,19 +191,24 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
 
     setState(() => _scanningMileage = true);
     try {
-      final inputImage = InputImage.fromFilePath(photo.path);
-      final recognizer = TextRecognizer(script: TextRecognitionScript.latin);
-      final result = await recognizer.processImage(inputImage);
-      await recognizer.close();
+      final text = await TesseractOcr.extractText(
+        photo.path,
+        config: const OCRConfig(
+          language: 'eng',
+          engine: OCREngine.tesseract,
+          options: {
+            'tessedit_char_whitelist': '0123456789',
+            TesseractConfig.pageSegMode: PageSegmentationMode.singleLine,
+          },
+        ),
+      );
 
+      final cleaned = text.replaceAll(RegExp(r'[\s.,]'), '');
+      final matches = RegExp(r'\d{4,7}').allMatches(cleaned);
       final numbers = <int>[];
-      for (final block in result.blocks) {
-        final cleaned = block.text.replaceAll(RegExp(r'[\s.,]'), '');
-        final matches = RegExp(r'\d{4,7}').allMatches(cleaned);
-        for (final m in matches) {
-          final value = int.tryParse(m.group(0)!);
-          if (value != null) numbers.add(value);
-        }
+      for (final match in matches) {
+        final value = int.tryParse(match.group(0)!);
+        if (value != null) numbers.add(value);
       }
 
       if (numbers.isEmpty) {
@@ -205,8 +223,7 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
       }
 
       numbers.sort();
-      final mileage = numbers.last;
-      setState(() => _endMileageController.text = mileage.toString());
+      setState(() => _endMileageController.text = numbers.last.toString());
     } catch (e) {
       if (mounted) {
         await showAppMessageDialog(
@@ -218,18 +235,6 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
     } finally {
       if (mounted) setState(() => _scanningMileage = false);
     }
-  }
-
-  String _typeLabel(AppLocalizations l10n, String type) {
-    return switch (type) {
-      'vacation' => l10n.tripTypeVacation,
-      'transport' => l10n.tripTypeTransport,
-      'other' => l10n.tripTypeOther,
-      'service_free' => l10n.tripTypeServiceFree,
-      'other_free' => l10n.tripTypeOtherFree,
-      'placeholder_free' => l10n.tripTypePlaceholderFree,
-      _ => type,
-    };
   }
 
   Trip? _findPreviousTripByMileage(Iterable<Trip> trips, int startMileage) {

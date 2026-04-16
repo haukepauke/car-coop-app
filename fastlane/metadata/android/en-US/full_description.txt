@@ -1,0 +1,12 @@
+Car Coop is the mobile companion app for the self-hosted Car Coop platform.
+
+Use it to manage everyday tasks inside a private car-sharing group:
+
+- book vehicles with calendar and list views
+- record trips, mileage, and shared costs
+- track expenses and payments between members
+- post updates on the group message board
+- save the current parking position and navigate back to the car
+- choose the server URL of your own Car Coop instance
+
+The app is designed for groups that want a practical mobile client without depending on a centralized service.
