@@ -99,6 +99,7 @@
   "tripRecorded": "Trip Recorded",
   "tripBackToList": "Back to Trips",
   "scanMileage": "Scan mileage from photo",
+  "scanMileageAlignHint": "Align the odometer inside the frame",
   "scanNoMileage": "No mileage value found in photo. Please try again.",
   "deleteTrip": "Delete Trip",
   "deleteTripConfirm": "Delete this trip?",

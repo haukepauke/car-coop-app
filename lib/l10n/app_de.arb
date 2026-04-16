@@ -91,6 +91,7 @@
   "tripRecorded": "Fahrt aufgezeichnet",
   "tripBackToList": "Zurück zu Fahrten",
   "scanMileage": "Kilometerstand fotografieren",
+  "scanMileageAlignHint": "Richte den Kilometerstand im Rahmen aus",
   "scanNoMileage": "Kein Kilometerstand im Foto gefunden. Bitte erneut versuchen.",
   "deleteTrip": "Fahrt löschen",
   "deleteTripConfirm": "Diese Fahrt löschen?",

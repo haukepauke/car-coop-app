@@ -284,6 +284,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanMileage => 'Scan mileage from photo';
 
   @override
+  String get scanMileageAlignHint => 'Align the odometer inside the frame';
+
+  @override
   String get scanNoMileage =>
       'No mileage value found in photo. Please try again.';
 

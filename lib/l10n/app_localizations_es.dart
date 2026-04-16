@@ -286,6 +286,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scanMileage => 'Escanear kilometraje';
 
   @override
+  String get scanMileageAlignHint =>
+      'Alinea el cuentakilómetros dentro del marco';
+
+  @override
   String get scanNoMileage =>
       'No se encontró kilometraje en la foto. Inténtalo de nuevo.';
 

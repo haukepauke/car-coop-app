@@ -652,6 +652,12 @@ abstract class AppLocalizations {
   /// **'Scan mileage from photo'**
   String get scanMileage;
 
+  /// No description provided for @scanMileageAlignHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Align the odometer inside the frame'**
+  String get scanMileageAlignHint;
+
   /// No description provided for @scanNoMileage.
   ///
   /// In en, this message translates to:

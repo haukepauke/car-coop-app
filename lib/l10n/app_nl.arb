@@ -91,6 +91,7 @@
   "tripRecorded": "Rit opgeslagen",
   "tripBackToList": "Terug naar ritten",
   "scanMileage": "Kilometerstand fotograferen",
+  "scanMileageAlignHint": "Lijn de kilometerteller uit binnen het kader",
   "scanNoMileage": "Geen kilometerstand gevonden in foto. Probeer opnieuw.",
   "deleteTrip": "Rit verwijderen",
   "deleteTripConfirm": "Deze rit verwijderen?",

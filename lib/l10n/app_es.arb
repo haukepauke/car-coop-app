@@ -91,6 +91,7 @@
   "tripRecorded": "Viaje registrado",
   "tripBackToList": "Volver a viajes",
   "scanMileage": "Escanear kilometraje",
+  "scanMileageAlignHint": "Alinea el cuentakilómetros dentro del marco",
   "scanNoMileage": "No se encontró kilometraje en la foto. Inténtalo de nuevo.",
   "deleteTrip": "Eliminar viaje",
   "deleteTripConfirm": "¿Eliminar este viaje?",

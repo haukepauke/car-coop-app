@@ -51,7 +51,7 @@
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>This app needs access to your photo library to attach photos to messages.</string>
 		<key>NSCameraUsageDescription</key>
-		<string>This app needs access to your camera to take photos for messages.</string>
+		<string>This app needs access to your camera to take photos for messages and to scan the odometer.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app needs your location to show the car's parking position on the map.</string>
 		<key>UIStatusBarHidden</key>

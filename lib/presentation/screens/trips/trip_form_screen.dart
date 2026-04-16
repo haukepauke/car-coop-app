@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:tesseract_ocr/ocr_engine_config.dart';
 import 'package:tesseract_ocr/tesseract_ocr.dart';
@@ -14,6 +13,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/auth_provider.dart';
 import '../../../providers/car_provider.dart';
 import '../../../providers/trip_provider.dart';
+import 'odometer_camera_screen.dart';
 import '../../widgets/common/app_message_dialog.dart';
 
 class TripFormPreset {
@@ -180,19 +180,17 @@ class _TripFormScreenState extends ConsumerState<TripFormScreen> {
 
   Future<void> _scanMileage() async {
     final l10n = AppLocalizations.of(context)!;
-    final picker = ImagePicker();
-    final photo = await picker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 1920,
-      maxHeight: 1920,
-      imageQuality: 90,
+    final imagePath = await Navigator.of(context).push<String>(
+      MaterialPageRoute(
+        builder: (_) => const OdometerCameraScreen(),
+      ),
     );
-    if (photo == null) return;
+    if (imagePath == null) return;
 
     setState(() => _scanningMileage = true);
     try {
       final text = await TesseractOcr.extractText(
-        photo.path,
+        imagePath,
         config: const OCRConfig(
           language: 'eng',
           engine: OCREngine.tesseract,

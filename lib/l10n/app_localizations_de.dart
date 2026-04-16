@@ -285,6 +285,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get scanMileage => 'Kilometerstand fotografieren';
 
   @override
+  String get scanMileageAlignHint => 'Richte den Kilometerstand im Rahmen aus';
+
+  @override
   String get scanNoMileage =>
       'Kein Kilometerstand im Foto gefunden. Bitte erneut versuchen.';
 

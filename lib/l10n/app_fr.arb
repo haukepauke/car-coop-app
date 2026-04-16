@@ -91,6 +91,7 @@
   "tripRecorded": "Trajet enregistré",
   "tripBackToList": "Retour aux trajets",
   "scanMileage": "Scanner le kilométrage",
+  "scanMileageAlignHint": "Alignez le compteur kilométrique dans le cadre",
   "scanNoMileage": "Aucun kilométrage trouvé dans la photo. Veuillez réessayer.",
   "deleteTrip": "Supprimer le trajet",
   "deleteTripConfirm": "Supprimer ce trajet ?",

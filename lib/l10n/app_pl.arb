@@ -91,6 +91,7 @@
   "tripRecorded": "Przejazd zapisany",
   "tripBackToList": "Powrót do przejazdów",
   "scanMileage": "Skanuj przebieg ze zdjęcia",
+  "scanMileageAlignHint": "Ustaw licznik w ramce",
   "scanNoMileage": "Nie znaleziono przebiegu na zdjęciu. Spróbuj ponownie.",
   "deleteTrip": "Usuń przejazd",
   "deleteTripConfirm": "Usunąć ten przejazd?",

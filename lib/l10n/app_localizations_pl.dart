@@ -285,6 +285,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get scanMileage => 'Skanuj przebieg ze zdjęcia';
 
   @override
+  String get scanMileageAlignHint => 'Ustaw licznik w ramce';
+
+  @override
   String get scanNoMileage =>
       'Nie znaleziono przebiegu na zdjęciu. Spróbuj ponownie.';
 

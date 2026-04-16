@@ -283,6 +283,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanMileage => 'Kilometerstand fotograferen';
 
   @override
+  String get scanMileageAlignHint =>
+      'Lijn de kilometerteller uit binnen het kader';
+
+  @override
   String get scanNoMileage =>
       'Geen kilometerstand gevonden in foto. Probeer opnieuw.';
 
