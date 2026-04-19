@@ -1,0 +1,5 @@
+Parking-location reliability update.
+
+- fixed Android location lookup build compatibility
+- prevented a crash when the device returns no current GPS fix
+- added fallback handling for unavailable current locations
