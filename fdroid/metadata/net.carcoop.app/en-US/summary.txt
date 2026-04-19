@@ -1,0 +1,1 @@
+Self-hosted car sharing companion for bookings, trips, expenses, and messages

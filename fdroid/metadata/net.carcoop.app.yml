@@ -1,0 +1,62 @@
+Categories:
+  - Money
+  - Time
+License: GPL-3.0-only
+AuthorName: Hauke Altmann
+AuthorEmail: hauke@haukepauke.de
+WebSite: https://car-coop.net
+SourceCode: https://github.com/haukepauke/car-coop-app
+IssueTracker: https://github.com/haukepauke/car-coop-app/issues
+Changelog: https://github.com/haukepauke/car-coop-app/releases
+
+Name: Car Coop
+Description: |-
+  Car Coop is the mobile companion app for the self-hosted Car Coop platform.
+
+  It is designed for small private car-sharing groups that want to manage bookings, 
+  trips, and shared costs without relying on a centralized service or losing track 
+  of information in loose paperwork kept in the vehicle.
+
+  The app connects to a user-configurable Car Coop server. The server software
+  is open source and can be self-hosted:
+  https://github.com/haukepauke/car-coop
+
+  Main features:
+
+  * Book vehicles in calendar and list views
+  * Record trips, mileage, and trip types
+  * Track expenses and payments between members
+  * Post updates on a shared message board
+  * Save the current parking position and navigate back to the car
+  * Capture odometer readings with OCR using bundled Tesseract data
+  * Use the app in English, German, Spanish, French, Dutch, or Polish
+
+  Requested permissions are used for core app features:
+
+  * Camera and media access for odometer photo capture
+  * Location access for parking position storage and navigation
+
+RepoType: git
+Repo: https://github.com/haukepauke/car-coop-app.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 2
+    commit: 1.0.0
+    output: build/app/outputs/flutter-apk/app-release.apk
+    srclibs:
+      - flutter@3.41.6
+    prebuild:
+      - export PUB_CACHE=/tmp/pub-cache
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/dart run build_runner build --delete-conflicting-outputs
+    build:
+      - export PUB_CACHE=/tmp/pub-cache
+      - $$flutter$$/bin/flutter build apk --release
+    ndk: 27.0.12077973
+
+AutoUpdateMode: None
+UpdateCheckMode: None
+CurrentVersion: 1.0.0
+CurrentVersionCode: 2

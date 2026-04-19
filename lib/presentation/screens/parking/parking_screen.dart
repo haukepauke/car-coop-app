@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/extensions/string_extensions.dart';
+import '../../../core/services/device_location_service.dart';
 import '../../../data/api/parking_api.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/car_provider.dart';
@@ -60,6 +60,7 @@ class ParkingScreen extends ConsumerStatefulWidget {
 
 class _ParkingScreenState extends ConsumerState<ParkingScreen> {
   final _mapController = MapController();
+  final _locationService = DeviceLocationService();
   bool _saving = false;
   String? _lastPrefetchedKey;
 
@@ -120,12 +121,11 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
   Future<void> _setCurrentLocation() async {
     final l10n = AppLocalizations.of(context)!;
 
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+    var hasPermission = await _locationService.hasPermission();
+    if (!hasPermission) {
+      hasPermission = await _locationService.requestPermission();
     }
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
+    if (!hasPermission) {
       if (mounted) {
         await showAppMessageDialog(
           context,
@@ -138,11 +138,7 @@ class _ParkingScreenState extends ConsumerState<ParkingScreen> {
 
     setState(() => _saving = true);
     try {
-      final position = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.best,
-        ),
-      );
+      final position = await _locationService.getCurrentLocation();
 
       final carId = ref.read(selectedCarIdProvider)!;
       await ref.read(parkingApiProvider).createParkingLocation({
