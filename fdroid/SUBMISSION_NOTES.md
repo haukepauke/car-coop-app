@@ -8,9 +8,9 @@ This directory contains a draft `fdroiddata` metadata file for the Android app:
 
 Build facts used for the draft:
 
-- app version: `1.0.1`
-- version code: `3`
-- git tag: `1.0.1`
+- app version: `1.0.2`
+- version code: `4`
+- git tag: `1.0.2`
 - verified local release command: `./android/gradlew assembleRelease`
 - verified local output: `build/app/outputs/flutter-apk/app-release.apk`
 
