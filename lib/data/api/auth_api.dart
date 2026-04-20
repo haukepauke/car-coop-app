@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'api_client.dart';
+import '../models/auth_tokens.dart';
 
 part 'auth_api.g.dart';
 
@@ -13,12 +14,19 @@ class AuthApi {
 
   final Dio _dio;
 
-  /// Returns the JWT token string on success.
-  Future<String> login(String email, String password) async {
+  Future<AuthTokens> login(String email, String password) async {
     final response = await _dio.post<Map<String, dynamic>>(
       '/api/login',
       data: {'email': email, 'password': password},
     );
-    return response.data!['token'] as String;
+
+    return AuthTokens.fromJson(response.data!);
+  }
+
+  Future<void> logout(String refreshToken) async {
+    await _dio.post<void>(
+      '/api/logout',
+      data: {'refresh_token': refreshToken},
+    );
   }
 }

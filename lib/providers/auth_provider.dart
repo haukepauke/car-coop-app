@@ -4,6 +4,7 @@ import '../core/constants/app_constants.dart';
 import '../data/api/api_client.dart';
 import '../data/api/auth_api.dart';
 import '../data/api/user_api.dart';
+import '../data/models/auth_tokens.dart';
 import '../data/models/user.dart';
 import 'locale_provider.dart';
 import 'settings_provider.dart';
@@ -39,8 +40,7 @@ class AuthNotifier extends AsyncNotifier<User?> {
       final errorStr = e.toString().toLowerCase();
       if (errorStr.contains('401') || errorStr.contains('jwt') || errorStr.contains('token')) {
         // Only delete from storage if we actually have a token that was rejected
-        final storage = ref.read(secureStorageProvider);
-        await storage.delete(key: AppConstants.jwtTokenKey);
+        await _clearTokens();
         ref.read(jwtTokenProvider.notifier).state = null;
         return null;
       }
@@ -54,11 +54,11 @@ class AuthNotifier extends AsyncNotifier<User?> {
   Future<void> login(String email, String password) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final token = await ref.read(authApiProvider).login(email, password);
-      await ref.read(secureStorageProvider).write(key: AppConstants.jwtTokenKey, value: token);
+      final tokens = await ref.read(authApiProvider).login(email, password);
+      await _persistTokens(tokens);
       
       // Updating this triggers build() reactively.
-      ref.read(jwtTokenProvider.notifier).state = token;
+      ref.read(jwtTokenProvider.notifier).state = tokens.accessToken;
       // Return the result of the reactive build loop
       return await future;
     });
@@ -72,9 +72,40 @@ class AuthNotifier extends AsyncNotifier<User?> {
 
   Future<void> logout() async {
     final storage = ref.read(secureStorageProvider);
-    await storage.delete(key: AppConstants.jwtTokenKey);
+    final refreshToken = await storage.read(key: AppConstants.refreshTokenKey);
+    if (refreshToken != null && refreshToken.isNotEmpty) {
+      try {
+        await ref.read(authApiProvider).logout(refreshToken);
+      } catch (_) {
+        // Local logout should still succeed even if the server cannot revoke.
+      }
+    }
+
+    await _clearTokens();
     ref.read(jwtTokenProvider.notifier).state = null;
     state = const AsyncData(null);
+  }
+
+  Future<void> _persistTokens(AuthTokens tokens) async {
+    final storage = ref.read(secureStorageProvider);
+    await storage.write(
+      key: AppConstants.jwtTokenKey,
+      value: tokens.accessToken,
+    );
+    if (tokens.refreshToken != null && tokens.refreshToken!.isNotEmpty) {
+      await storage.write(
+        key: AppConstants.refreshTokenKey,
+        value: tokens.refreshToken,
+      );
+    } else {
+      await storage.delete(key: AppConstants.refreshTokenKey);
+    }
+  }
+
+  Future<void> _clearTokens() async {
+    final storage = ref.read(secureStorageProvider);
+    await storage.delete(key: AppConstants.jwtTokenKey);
+    await storage.delete(key: AppConstants.refreshTokenKey);
   }
 }
 

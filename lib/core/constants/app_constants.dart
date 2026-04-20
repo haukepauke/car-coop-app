@@ -4,6 +4,7 @@ class AppConstants {
   static const String apiUrlKey = 'api_url';
   static const String themeModeKey = 'theme_mode';
   static const String jwtTokenKey = 'jwt_token';
+  static const String refreshTokenKey = 'refresh_token';
   static const String selectedCarIdKey = 'selected_car_id';
   static const String quickActionsEnabledKey = 'quick_actions_enabled';
 
