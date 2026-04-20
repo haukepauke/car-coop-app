@@ -42,21 +42,25 @@ Repo: https://github.com/haukepauke/car-coop-app.git
 Builds:
   - versionName: 1.0.1
     versionCode: 3
-    commit: 1.0.1
+    commit: 76f3492e91a1f8a527fd7a58dab1def46ea60afb
     output: build/app/outputs/flutter-apk/app-release.apk
     srclibs:
-      - flutter@3.41.6
+      - flutter@stable
     prebuild:
-      - export PUB_CACHE=/tmp/pub-cache
+      - flutterVersion=$(tr -d '\n' < .flutter-version)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
+      - export PUB_CACHE=$(pwd)/.pub-cache
       - $$flutter$$/bin/flutter config --no-analytics
       - $$flutter$$/bin/flutter pub get
       - $$flutter$$/bin/dart run build_runner build --delete-conflicting-outputs
     build:
-      - export PUB_CACHE=/tmp/pub-cache
+      - export PUB_CACHE=$(pwd)/.pub-cache
       - $$flutter$$/bin/flutter build apk --release
     ndk: 27.0.12077973
 
-AutoUpdateMode: None
-UpdateCheckMode: None
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^\d+\.\d+\.\d+$
+UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
 CurrentVersion: 1.0.1
 CurrentVersionCode: 3

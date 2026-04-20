@@ -23,7 +23,7 @@ The mobile companion app for **Car Coop**, a self-hosted platform designed for s
 
 ### Prerequisites
 
-*   Flutter SDK (stable channel)
+*   Flutter SDK `3.41.6` (see [`.flutter-version`](/home/hauke/workspace/car-coop-app/.flutter-version))
 *   JDK 17 or newer with `javac` available
 *   A running [Car Coop Server](https://github.com/haukepauke/car-coop) instance.
 
