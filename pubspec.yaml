@@ -1,7 +1,7 @@
 name: car_coop_app
 description: Car cooperative management app
 publish_to: "none"
-version: 1.0.3+5
+version: 1.0.4+6
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
