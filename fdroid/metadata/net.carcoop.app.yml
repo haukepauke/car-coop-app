@@ -9,41 +9,16 @@ SourceCode: https://github.com/haukepauke/car-coop-app
 IssueTracker: https://github.com/haukepauke/car-coop-app/issues
 Changelog: https://github.com/haukepauke/car-coop-app/releases
 
-Name: Car Coop
-Description: |-
-  Car Coop is the mobile companion app for the self-hosted Car Coop platform.
-
-  It is designed for small private car-sharing groups that want to manage bookings, 
-  trips, and shared costs without relying on a centralized service or losing track 
-  of information in loose paperwork kept in the vehicle.
-
-  The app connects to a user-configurable Car Coop server. The server software
-  is open source and can be self-hosted:
-  https://github.com/haukepauke/car-coop
-
-  Main features:
-
-  * Book vehicles in calendar and list views
-  * Record trips, mileage, and trip types
-  * Track expenses and payments between members
-  * Post updates on a shared message board
-  * Save the current parking position and navigate back to the car
-  * Capture odometer readings with OCR using bundled Tesseract data
-  * Use the app in English, German, Spanish, French, Dutch, or Polish
-
-  Requested permissions are used for core app features:
-
-  * Camera and media access for odometer photo capture
-  * Location access for parking position storage and navigation
+AutoName: Car Coop
 
 RepoType: git
 Repo: https://github.com/haukepauke/car-coop-app.git
 
 Builds:
-  - versionName: 1.0.2
-    versionCode: 4
-    commit: 1.0.2
-    output: build/app/outputs/flutter-apk/app-release.apk
+  - versionName: 1.0.3
+    versionCode: 51
+    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+    output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
     prebuild:
@@ -54,13 +29,64 @@ Builds:
       - $$flutter$$/bin/flutter config --no-analytics
       - $$flutter$$/bin/flutter pub get
       - $$flutter$$/bin/dart run build_runner build --delete-conflicting-outputs
+    scandelete:
+      - .pub-cache
     build:
       - export PUB_CACHE=$(pwd)/.pub-cache
-      - $$flutter$$/bin/flutter build apk --release
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform="android-arm"
+    ndk: 27.0.12077973
+
+  - versionName: 1.0.3
+    versionCode: 52
+    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+    output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+    srclibs:
+      - flutter@stable
+    prebuild:
+      - flutterVersion=$(tr -d '\n' < .flutter-version)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/dart run build_runner build --delete-conflicting-outputs
+    scandelete:
+      - .pub-cache
+    build:
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform="android-arm64"
+    ndk: 27.0.12077973
+
+  - versionName: 1.0.3
+    versionCode: 53
+    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+    output: build/app/outputs/flutter-apk/app-x86_64-release.apk
+    srclibs:
+      - flutter@stable
+    prebuild:
+      - flutterVersion=$(tr -d '\n' < .flutter-version)
+      - '[[ $flutterVersion ]]'
+      - git -C $$flutter$$ checkout -f $flutterVersion
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/dart run build_runner build --delete-conflicting-outputs
+    scandelete:
+      - .pub-cache
+    build:
+      - export PUB_CACHE=$(pwd)/.pub-cache
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform="android-x64"
     ndk: 27.0.12077973
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^\d+\.\d+\.\d+$
+VercodeOperation:
+  - '%c * 10 + 1'
+  - '%c * 10 + 2'
+  - '%c * 10 + 3'
 UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
-CurrentVersion: 1.0.2
-CurrentVersionCode: 4
+CurrentVersion: 1.0.3
+CurrentVersionCode: 53

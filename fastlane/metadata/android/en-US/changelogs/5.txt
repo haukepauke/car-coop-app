@@ -1,0 +1,4 @@
+Session reliability update.
+
+- automatically refreshes expired login tokens
+- reduces unexpected sign-outs during regular app use
