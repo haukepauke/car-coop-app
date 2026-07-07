@@ -17,7 +17,7 @@ Repo: https://github.com/haukepauke/car-coop-app.git
 Builds:
   - versionName: 1.0.5
     versionCode: 61
-    commit: c7b150fc57c6725798fc34156392e406b0618dd0
+    commit: 4c6f16e5e2b5eb132b25679bfd82c1d3f8a40c78
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
@@ -39,7 +39,7 @@ Builds:
 
   - versionName: 1.0.5
     versionCode: 62
-    commit: c7b150fc57c6725798fc34156392e406b0618dd0
+    commit: 4c6f16e5e2b5eb132b25679bfd82c1d3f8a40c78
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
     srclibs:
       - flutter@stable
@@ -61,7 +61,7 @@ Builds:
 
   - versionName: 1.0.5
     versionCode: 63
-    commit: c7b150fc57c6725798fc34156392e406b0618dd0
+    commit: 4c6f16e5e2b5eb132b25679bfd82c1d3f8a40c78
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
     srclibs:
       - flutter@stable

@@ -10,7 +10,7 @@ Build facts used for the draft:
 
 - app version: `1.0.5`
 - version code: `6`
-- git commit: `c7b150fc57c6725798fc34156392e406b0618dd0`
+- git commit: `4c6f16e5e2b5eb132b25679bfd82c1d3f8a40c78`
 - verified local release command: `./android/gradlew assembleRelease`
 - verified local output: `build/app/outputs/flutter-apk/app-release.apk`
 
