@@ -15,9 +15,9 @@ RepoType: git
 Repo: https://github.com/haukepauke/car-coop-app.git
 
 Builds:
-  - versionName: 1.0.3
-    versionCode: 51
-    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+  - versionName: 1.0.5
+    versionCode: 61
+    commit: c7b150fc57c6725798fc34156392e406b0618dd0
     output: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
     srclibs:
       - flutter@stable
@@ -37,9 +37,9 @@ Builds:
       - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform="android-arm"
     ndk: 27.0.12077973
 
-  - versionName: 1.0.3
-    versionCode: 52
-    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+  - versionName: 1.0.5
+    versionCode: 62
+    commit: c7b150fc57c6725798fc34156392e406b0618dd0
     output: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
     srclibs:
       - flutter@stable
@@ -59,9 +59,9 @@ Builds:
       - $$flutter$$/bin/flutter build apk --release --split-per-abi --target-platform="android-arm64"
     ndk: 27.0.12077973
 
-  - versionName: 1.0.3
-    versionCode: 53
-    commit: f40996631dafaf6dc99f17cb337bd3d1c7f04fe4
+  - versionName: 1.0.5
+    versionCode: 63
+    commit: c7b150fc57c6725798fc34156392e406b0618dd0
     output: build/app/outputs/flutter-apk/app-x86_64-release.apk
     srclibs:
       - flutter@stable
@@ -88,5 +88,5 @@ VercodeOperation:
   - '%c * 10 + 2'
   - '%c * 10 + 3'
 UpdateCheckData: pubspec.yaml|version:\s.+\+(\d+)|.|version:\s(.+)\+
-CurrentVersion: 1.0.3
-CurrentVersionCode: 53
+CurrentVersion: 1.0.5
+CurrentVersionCode: 63

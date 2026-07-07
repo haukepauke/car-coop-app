@@ -1,0 +1,4 @@
+Reliability update.
+
+- fixed first login for accounts with exactly one car
+- updated F-Droid build configuration for the 1.0.5 release
