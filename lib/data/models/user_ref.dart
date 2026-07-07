@@ -39,13 +39,14 @@ class UserRefListConverter implements JsonConverter<List<UserRef>, List<dynamic>
 class UserRef {
   const UserRef({
     required this.id,
-    required this.name,
+    this.name = '',
     this.color,
     this.iri,
     this.profilePicturePath,
   });
 
   final int id;
+  @JsonKey(defaultValue: '')
   final String name;
   final String? color;
   @JsonKey(name: '@id')

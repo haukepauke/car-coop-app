@@ -7,8 +7,8 @@ part 'car.g.dart';
 class Car {
   const Car({
     required this.id,
-    required this.name,
-    required this.licensePlate,
+    this.name = '',
+    this.licensePlate = '',
     this.color,
     this.mileage,
     this.milageUnit,
@@ -18,7 +18,9 @@ class Car {
   });
 
   final int id;
+  @JsonKey(defaultValue: '')
   final String name;
+  @JsonKey(defaultValue: '')
   final String licensePlate;
   final String? color;
   final int? mileage;
